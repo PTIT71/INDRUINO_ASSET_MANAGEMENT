@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <!-- Default Main Template -->
+    <definition name="layout-template" template="/WEB-INF/views/tiles/layouts/layoutTemplates.jsp">
+        <put-attribute name="title" value="Simple Tiles 2 Example" type="string" />
+        <put-attribute name="body" value="/WEB-INF/templates/blank.jsp" />
+    </definition>
+
+    <definition name="homePage" extends="layout-template">
+        <put-attribute name="title" value="Trang Chu"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/index.jsp" />
+    </definition>
+
+    <definition name="info/about" extends=".mainTemplate">
+        <put-attribute name="body" value="/WEB-INF/jsp/info/about.jsp" />
+    </definition>
+
+</tiles-definitions>
