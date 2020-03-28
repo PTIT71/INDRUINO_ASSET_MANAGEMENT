@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class GeneralController {
 	
 	
-	@RequestMapping("/general")
+	@RequestMapping("/manager")
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response) 
 	{
 		ModelAndView mv = new ModelAndView();		

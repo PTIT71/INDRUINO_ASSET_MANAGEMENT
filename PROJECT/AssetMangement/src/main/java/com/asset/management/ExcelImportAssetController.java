@@ -19,7 +19,7 @@ import com.asset.management.model.Product;
 
 @Controller
 @RequestMapping(value="excel")
-public class ExcelController {
+public class ExcelImportAssetController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String index()

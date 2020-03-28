@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SettingController {
 	
-	@RequestMapping("/setting")
+	@RequestMapping("/admin-manager")
 	public ModelAndView init(HttpServletRequest request,HttpServletResponse response) 
 	{
 		ModelAndView mv = new ModelAndView();
