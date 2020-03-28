@@ -3,3 +3,63 @@
 	padding: 0;
 	margin: auto;
 }
+.link-header {
+	text-decoration: none;
+	color: white;
+	cursor: pointer;
+}
+
+.link-header:hover {
+	color: white;
+}
+
+.nameuser {
+	background-color: transparent;
+	border: 0px;
+	font-size: 16px;
+	color: white !important;
+	margin-left:10px;
+	line-height: 60px
+}
+.drop-menu
+{
+	top: -14px !important;
+    left: 0px !important;
+    right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+.drop-menu li:hover
+{
+	background-color: gray;
+}
+.drop-menu li
+{
+	height: 37px;
+	line-height:37px;
+    padding-left: 10px;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+}
+.drop-menu li a
+{
+	text-decoration: none;
+}
+
+.iconuser {
+	font-size: 24px;
+	color: white;
+	line-height: 60px;
+	float: left;
+	margin-right:10px;
+}
+.btn-paging
+{
+	padding: 0px; 
+	line-height: 30px; 
+	background-color: #bdc6e2; 
+	border-radius: 0; 
+	width: 30px; 
+	height: 30px
+}

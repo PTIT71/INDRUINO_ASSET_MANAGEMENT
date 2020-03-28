@@ -30,18 +30,31 @@ public class AssetController {
 	@RequestMapping("/asset")
 	public String add(ModelMap modelMap, HttpServletRequest request) throws SQLException 
 	{
-		AssetGeneralSelectDao AssetSelectDao = new AssetGeneralSelectDao();
+		AssetGeneralFormSearch form = new AssetGeneralFormSearch(request);
+		modelMap.addAttribute("TittleScreen","MÀN HÌNH QUẢN LÝ TÀI SẢN CHUNG");
+		AssetGeneralSelectDao AssetSelectDao = new AssetGeneralSelectDao(null);
 		modelMap.addAttribute("listAssets",AssetSelectDao.excute() );
+		AssetGeneralSelectDao AssetSelectDaoSearch = new AssetGeneralSelectDao(form);
+		modelMap.addAttribute("listAssetSearch",AssetSelectDaoSearch.excute() );
+		modelMap.addAttribute("formSearch",form);
 		return "/pages/asset.jsp";
 	}
 	
-	@RequestMapping("/assetinit")
+	@RequestMapping("/AssetGeneralSearchInit")
 	public String search(ModelMap modelMap, HttpServletRequest request) throws SQLException 
 	{
 		AssetGeneralFormSearch form = new AssetGeneralFormSearch(request);
-		
-		AssetGeneralSelectDao AssetSelectDao = new AssetGeneralSelectDao(form);
+		modelMap.addAttribute("TittleScreen","MÀN HÌNH QUẢN LÝ TÀI SẢN CHUNG");
+		AssetGeneralSelectDao AssetSelectDao = new AssetGeneralSelectDao(null);
 		modelMap.addAttribute("listAssets",AssetSelectDao.excute() );
+		AssetGeneralSelectDao AssetSelectDaoSearch = new AssetGeneralSelectDao(form);
+		List<AssetObject> lstAsset = AssetSelectDaoSearch.excute();
+		modelMap.addAttribute("listAssetSearch", lstAsset);
+		modelMap.addAttribute("formSearch",form);
+		if(lstAsset ==null || lstAsset.size()==0)
+		{
+			modelMap.addAttribute("message","Không tìm thấy dữ liệu yêu cầu<br>Xin thay đổi điều kiện tìm kiếm");
+		}
 		return "/pages/asset.jsp";
 	}
 	

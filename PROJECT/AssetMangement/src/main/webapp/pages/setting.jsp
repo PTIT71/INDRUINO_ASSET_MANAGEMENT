@@ -79,7 +79,7 @@
 								<div class="col-sm-6">
 									<div class="feauture">
 										<h4 class="level1">2 Active User</h4>
-										<a href="#"><i class="fa fa-arrow-right"></i>Manage Users</a>
+										<a href="user/user-manage"><i class="fa fa-arrow-right"></i>Manage Users</a>
 									</div>
 								</div>
 								<div class="col-sm-6">

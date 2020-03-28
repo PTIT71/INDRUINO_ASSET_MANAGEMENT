@@ -1,32 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-		<div style="height: 60px; background-color: #005BB5; padding-left:30px">
-			<div style="width: 98%">
-				<div class="row" style="height: 60px; background-color: #005BB5">
-					<div class="SystemName col-sm-9" style="padding: 0px">
-						<h1 style="color: white; line-height: 60px">ASSET MANAGEMENT</h1>
-					</div>
-					<div class="UserName col-sm-3">
-					<%
-					 		HttpSession session_en=request.getSession();  
-							if(session.getAttribute("NAME")!=null && session.getAttribute("NAME").toString().trim().length()>0)
-							{
-								%>
-								  <i style='font-size: 24px; color: white; line-height: 60px; float: left' class='far'>&#xf007;</i>
-                     			  <p style="padding-left: 30px; font-size: 16px; color: white; line-height: 60px"><%=session.getAttribute("NAME").toString()%>(<%=session.getAttribute("ID").toString() %>)</p>
-								<%
-							}
-				      		
-					%>
-						
-					</div>
-
-				</div>
+<div style="height: 60px; background-color: #005BB5; padding-left: 30px">
+	<div style="width: 98%">
+		<div class="row" style="height: 60px; background-color: #005BB5">
+			<div class="SystemName col-sm-9" style="padding: 0px">
+				<h1 style="color: white; line-height: 60px">
+					<a style="text-decoration: none;" class="link-header"
+						href="/AssetMangement/">ASSET MANAGEMENT</a>
+				</h1>
 			</div>
-		</div>
+			<div class="UserName col-sm-3">
+				<%
+					HttpSession session_en = request.getSession();
+					if (session.getAttribute("NAME") != null && session.getAttribute("NAME").toString().trim().length() > 0) {
+				%>
+				<a class="nameuser dropdown-toggle" type="button"
+					data-toggle="dropdown"> <i class="far iconuser">&#xf007;</i> <%=session.getAttribute("NAME").toString()%>(<%=session.getAttribute("ID").toString()%>)
+				</a>
+				<ul class="dropdown-menu drop-menu">
+					<li><a href="login">Đăng xuất</a></li>
+					<li><a href="#">Tải lại trang</a></li>
+				</ul>
+				<%
+					}
+				%>
 
-		
-	
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
 
 

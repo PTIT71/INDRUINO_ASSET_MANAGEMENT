@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/asset/management/AssetController.java=UTF-8
+encoding//src/main/java/com/asset/management/UserLoginController.java=UTF-8
+encoding//src/main/java/com/asset/management/dao/UserSelectDao.java=UTF-8
 encoding//src/main/java/com/asset/management/helper/ExcelHelper.java=UTF-8
+encoding//src/main/java/com/asset/management/util/CommonSQL.java=UTF-8
 encoding//src/main/webapp/common/footer.jsp=UTF-8
 encoding//src/main/webapp/common/header.jsp=UTF-8
