@@ -13,7 +13,7 @@ public class UserDao {
 		
 		sql.append("SELECT *");
 		sql.append(" FROM");
-		sql.append(" USER_SYS");
+		sql.append(" USER_SYSTEM");
 		
 		return sql.toString();
 	}

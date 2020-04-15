@@ -26,6 +26,10 @@
 <body>
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	<jsp:include page="/common/subHeaderEmpty.jsp"></jsp:include>
+	<form action="savefile" method="post" enctype="multipart/form-data">  
+Select File: <input type="file" name="file"/>  
+<input type="submit" value="Upload File"/>  
+</form>  
 	<div class="container" style="margin-top: 10px">
 		<div class="row">
 			<div class="col-sm-4 text-center">

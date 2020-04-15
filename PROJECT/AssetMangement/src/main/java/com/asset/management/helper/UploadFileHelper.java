@@ -5,13 +5,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadFileHelper {
 	
-	public static File simpleUpload(MultipartFile file, HttpServletRequest request, boolean encrypt_file_name, String upload_folder)
+	public static File simpleUpload(MultipartFile file, HttpServletRequest request, boolean encrypt_file_name, String upload_folder,HttpSession session)
 	{
 		String filename = null;
 		File serverFile=null;
@@ -21,6 +23,7 @@ public class UploadFileHelper {
 			if(!file.isEmpty())
 			{
 				String applicationPath = request.getServletContext().getRealPath("");
+				
 				if(encrypt_file_name)
 				{
 					String currentFileName = file.getOriginalFilename();
@@ -35,7 +38,8 @@ public class UploadFileHelper {
 				}
 				byte[] bytes = file.getBytes();
 				String rootPath = applicationPath;
-				File dir = new  File(rootPath + File.separator + upload_folder);
+				//File dir = new  File(rootPath + File.separator + upload_folder);
+				File dir = new  File("E:\\2020\\LUANVANTOTNGHIEP\\INDRUINO_ASSET_MANAGEMENT\\PROJECT\\AssetMangement\\src\\main\\webapp\\resources\\images" );
 				
 				if(dir.exists())
 				{

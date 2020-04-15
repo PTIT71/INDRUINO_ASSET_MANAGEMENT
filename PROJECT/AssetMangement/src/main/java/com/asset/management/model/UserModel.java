@@ -34,7 +34,7 @@ public class UserModel {
 	public String getEmployment_CD() {
 		return employee_cd;
 	}
-	public void seEmployment_CD(String usermame) {
+	public void setEmployment_CD(String usermame) {
 		this.employee_cd = usermame;
 	}
 	public String getPasword() {

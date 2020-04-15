@@ -51,19 +51,19 @@
 		 <table class="table  table-feature">
     <tbody>
       <tr>
-        <td><a class="btn  btn-feature" href="#">QUẢN LÝ TÀI SẢN</a></td>
+        <td><a class="btn  btn-feature" href="organization">QUẢN LÝ TÀI SẢN</a></td>
         <td><a class="btn  btn-feature" href="#">ĐĂNG KÝ MƯỢN</a></td>
         <td></td>
         <td><a class="btn  btn-feature btn-admin" href="admin-manager">QUẢN TRỊ HỆ THỐNG</a></td>
       </tr>
       <tr>
-        <td><a class="btn  btn-feature" href="#">KIỂM KÊ TÀI SẢN</a></td>
+        <td><a class="btn  btn-feature" href="inventory-management-init">QUẢN LÝ KIỂM KÊ TÀI SẢN</a></td>
         <td><a class="btn  btn-feature" href="#">ĐĂNG KÝ TRẢ</a></td>
         <td></td>
         <td></td>
       </tr>
       <tr>
-        <td></td>
+        <td><a class="btn  btn-feature" href="inventory">KIỂM KÊ TÀI SẢN</a></td>
         <td><a class="btn  btn-feature" href="#">BÁO CÁO SỰ CỐ</a></td>
         <td></td>
         <td></td>

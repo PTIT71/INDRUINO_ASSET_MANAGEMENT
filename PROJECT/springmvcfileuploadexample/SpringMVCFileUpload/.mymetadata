@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="SpringMVCFileUpload"
+  id="myeclipse.1462452895741"
+  context-root="/SpringMVCFileUpload"
+  j2ee-spec="5.0"
+  archive="SpringMVCFileUpload.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
