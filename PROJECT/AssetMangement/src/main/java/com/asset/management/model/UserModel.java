@@ -4,6 +4,23 @@ public class UserModel {
 	public String name;
 	public String employee_cd;
 	public String department;
+	public String company_cd;
+	public String getEmployee_cd() {
+		return employee_cd;
+	}
+
+	public void setEmployee_cd(String employee_cd) {
+		this.employee_cd = employee_cd;
+	}
+
+	public String getCompany_cd() {
+		return company_cd;
+	}
+
+	public void setCompany_cd(String company_cd) {
+		this.company_cd = company_cd;
+	}
+
 	public String getDepartment() {
 		return department;
 	}

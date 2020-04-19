@@ -8,6 +8,12 @@
 <title>General management</title>
 <jsp:include page="/common/library.jsp"></jsp:include>
 <link rel="stylesheet" href="./resources/css/tabledata.css">
+<style type="text/css">
+a.viewitem
+{
+	cursor: pointer;
+}
+</style>
 </head>
 
 <body>
@@ -16,9 +22,9 @@
 	<div style="margin: 10px">
 		<div class="title-feature">
 			<div class="text-right">
-				<button type="submit" style="border-radius: 0" onclick="window.location.href='company-insert-init'"
-					class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-					<i style="font-size: 24px" class="fa">&#xf067;</i>CẬP NHẬT
+				<button type="button" style="border-radius: 0" onclick="ToLink('CreateInventorySession')"
+					class="btn btn-primary">
+					<i style="font-size: 24px" class="fa">&#xf067;</i>TẠO PHIÊN KIỂM KÊ
 				</button>
 				<button type="submit" style="border-radius: 0" onclick="alert();"
 					class="btn btn-primary">
@@ -38,23 +44,26 @@
 				<thead>
 					<tr>
 						<th style="width: 2%"></th>
-						<th style="width: 10%">Mã TÀI SẢN</th>
+						<th style="width: 10%">MÃ QUẢN LÝ</th>
 						<th style="width: 20%;">TÊN TÀI SẢN</th>
-						<th style="width: 10%">ĐƠN VỊ</th>
-						<th style="width: 8%;">MÃ KIỂM KÊ</th>
-						<th style="width: 10%">NGÀY KIỂM KÊ</th>
-						<th style="width: 10%;">NGƯỜI KIỂM KÊ</th>
+						<th style="width: 10%">KHU VỰC</th>
+						<th style="width: 8%;">NGÀY KIỂM KÊ</th>
+						<th style="width: 10%">NGƯỜI KIỂM KÊ</th>
+						<th style="width: 10%;">TRẠNG THÁI</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="company" items="${lstCompany}">
+					<c:forEach var="inventorySession" items="${lstInventorySession}">
 						<tr>
-							<td><input name="checkboxrow" onclick="return GetSelected()"
-								onchange="GetSelected()" type="checkbox"
-								class="form-check-input"
+							<td>
+								<input name="checkboxrow" onclick="return GetSelected()" onchange="GetSelected()" type="checkbox" class="form-check-input"
 								style="margin: 0px; padding: 0px; margin-top: 7px" value=""></td>
-							<td style="text-align: center;">${company.getCompany_name()}</td>
-							<td>${company.getCompany_address()}</td>
+							<td style="text-align: left;">${inventorySession.getInventory_id()}</td>
+							<td style="text-align: left;" >${inventorySession.getInventory_session_name()}</td>
+							<td style="text-align: right;">${inventorySession.getInventory_start_date()}</td>
+							<td style="text-align: right;">${inventorySession.getInventory_end_date()}</td>
+							<td></td>
+							<td><a class="viewitem" href="InventoryManagement?InventoryID=${inventorySession.getInventory_session_id()}">XEM KIỂM KÊ</a></td>
 						</tr>
 					</c:forEach>
 

@@ -25,7 +25,7 @@ public class CompanyInsertDao {
 		Connection connectString = conn.getConnection();
 		PreparedStatement sqlStatement = connectString.prepareStatement(getSql());
 		System.out.println(getSql());
-			sqlStatement.setString(1,Common.getDateCurren("YYYYMMDDHHMMSS"));//COMPANY_CD
+			sqlStatement.setString(1,Common.getDateCurrent("YYYYMMDDHHMMSS"));//COMPANY_CD
 			sqlStatement.setString(2,form.getName());//COMPANY_NAME
 			sqlStatement.setString(3,form.getAddress());//COMPANY_ADDRESS
 			sqlStatement.setString(4,form.getFile_name());//COMPANY_LOGO
@@ -36,7 +36,7 @@ public class CompanyInsertDao {
 			sqlStatement.setString(9,form.getLevel());//COMPANY_LEVEL
 			sqlStatement.setString(10,form.getDesciption());//COMPANY_DESCRIPTION
 			sqlStatement.setString(11,form.getUserInsert());//USER_INSTERT
-			sqlStatement.setString(12,Common.getDateCurren("YYYYMMDD"));//INSTER_DT
+			sqlStatement.setString(12,Common.getDateCurrent("YYYYMMDD"));//INSTER_DT
 			sqlStatement.setString(13,"");//USER_UPDATE is EMPTY
 			sqlStatement.setString(14,"");//LAST_UPDATE_DT is EMPTY
 	System.out.println(sqlStatement.getParameterMetaData());

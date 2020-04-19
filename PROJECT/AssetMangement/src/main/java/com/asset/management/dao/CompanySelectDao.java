@@ -15,9 +15,17 @@ import com.asset.management.model.CompanyModel;
 
 public class CompanySelectDao {
 	
+	CompanyModel company;
+	
 	public CompanySelectDao()
 	{
 		
+	}
+	
+
+	public CompanySelectDao(CompanyModel company)
+	{
+		this.company = company;
 	}
 	public CompanyForm excuteById(String id) throws SQLException
 	{
@@ -32,7 +40,7 @@ public class CompanySelectDao {
 		
 		result = stmt.executeQuery(getSqlById(id));
 		while (result.next()) {
-			company.setName(result.getString("COMPANY_CD"));
+			company.setName(result.getString("COMPANY_NAME"));
 			company.setFile_name(result.getString("COMPANY_LOGO"));
 			company.setAddress(result.getString("COMPANY_ADDRESS"));
 			company.setTax(result.getString("COMPANY_TAX"));

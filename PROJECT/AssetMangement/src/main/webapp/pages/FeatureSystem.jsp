@@ -57,7 +57,7 @@
         <td><a class="btn  btn-feature btn-admin" href="admin-manager">QUẢN TRỊ HỆ THỐNG</a></td>
       </tr>
       <tr>
-        <td><a class="btn  btn-feature" href="inventory-management-init">QUẢN LÝ KIỂM KÊ TÀI SẢN</a></td>
+        <td><a class="btn  btn-feature" href="InventorySessionInit">QUẢN LÝ KIỂM KÊ TÀI SẢN</a></td>
         <td><a class="btn  btn-feature" href="#">ĐĂNG KÝ TRẢ</a></td>
         <td></td>
         <td></td>

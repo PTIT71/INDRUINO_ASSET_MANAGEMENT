@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,15 +121,14 @@ button[type="button"] {
 
 		</div>
 	</div>
-	<form action="checkInventory" style="width: 90%; margin: auto"
+	<form action="PDACheckInventory" style="width: 90%; margin: auto"
 		method="POST">
 		<div class="form-group">
-			<label class="title" for="usr">NHẬP MÃ QUẢN LÝ KIỂM KÊ:</label> <select
-				class="form-control iset3d" name="rfid" id="usr">
-				<option>KKTS20200101</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
+			<label class="title" for="usr">NHẬP MÃ QUẢN LÝ KIỂM KÊ:</label> <select onchange="selectIDSession()"
+				class="form-control iset3d" name="" id="select_session_id">
+			<c:forEach var="p" items="${lstInventory}">
+				<option>${p.getInventory_session_id()}</option>
+			</c:forEach>
 			</select>
 		</div>
 		<button type="button" class="btn btn-primary " data-toggle="modal"
@@ -202,12 +202,13 @@ button[type="button"] {
 								viên:</label> <input type="text" class="form-control iset3d"
 								placeholder="Enter email" id="email">
 						</div>
+						<input type="text" style="display: none;" id="id_session" value="${lstInventory.get(0).getInventory_session_id()}" />
 						<div class="form-group" style="margin-bottom: 0px;">
 							<label for="pwd" style="font-weight: 700;">Mật khẩu:</label> <input
 								type="password" class="form-control iset3d"
 								placeholder="Enter password" id="pwd">
 						</div>
-						<button type="submit" style="margin-top: 10px;"
+						<button type="submit" style="margin-top: 10px;" onclick="ToLink('authentication")"
 							class="btn btn-danger" >XÁC THỰC</button>
 					</form>
 				</div>
@@ -219,4 +220,11 @@ button[type="button"] {
 	</div>
 
 </body>
+<script type="text/javascript">
+function selectIDSession()
+{
+	var id_session = document.getElementById("select_session_id").value;
+	document.getElementById("id_session").value=id_session;
+}
+</script>
 </html>

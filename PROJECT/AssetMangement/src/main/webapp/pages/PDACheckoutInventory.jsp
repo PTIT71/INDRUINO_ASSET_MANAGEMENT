@@ -111,8 +111,12 @@ function losefocus() {
 
 		</div>
 	</div>
-	<form action="checkInventory"
+	<form action="PDACheckInventory"
 		style="width: 90%; margin: auto; margin-top: 10px" method="get">
+		<div class="form-group">
+			<label class="title" for="usr">MÃ KIỂM KÊ:</label>
+			<input type="text" style="background-color: green;" readonly="readonly" class="form-control" name="InventorySessionCD" id="InventorySessionCD">
+		</div>
 		<div class="form-group">
 			<input type="text" class="form-control" name="rfid" id="rfid">
 

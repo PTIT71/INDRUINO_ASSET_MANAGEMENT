@@ -23,14 +23,28 @@ import com.asset.management.model.InventorySession;
 import com.asset.management.util.CommonSQL;
 
 @Controller
-public class InventoryManagementContorller {
-
-	@RequestMapping("InventoryManagement")
-	public ModelAndView CompanyInsert(ModelMap modelMap, HttpServletRequest request) throws SQLException
+public class InventorySessionController {
+	
+	
+	@RequestMapping("InventorySessionInit")
+	public ModelAndView init(ModelMap modelMap, HttpServletRequest request) 
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("TittleScreen","MÀN HÌNH QUẢN LÝ KIỂM KÊ");
-		mv.setViewName("/pages/InventoryManagement.jsp");
+		mv.setViewName("pages/InventorySessionInit.jsp");
+		
+		InventorySessionSelectDao inventorySessionSelectDao = new InventorySessionSelectDao();
+		try {
+			List<InventorySession> lstInventorySession = inventorySessionSelectDao.excute();
+			if(lstInventorySession.size() > 0)
+			{
+				mv.addObject("lstInventorySession",lstInventorySession);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			mv.addObject("message",e.toString());
+		}
+		
 		
 		return mv;
 	}

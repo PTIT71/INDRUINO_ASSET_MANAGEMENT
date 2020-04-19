@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 
@@ -108,9 +108,8 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="feauture">
-									<h4 class="level1">Indruino Technology Solutions</h4>
-									<h4 class="level2">Số 01, Võ Văn Ngân, phường Linh Chiểu,
-										quận Thủ Đức, TP.HCM</h4>
+									<h4 class="level1">${company.getName() }</h4>
+									<h4 class="level2">${company.getAddress() }</h4>
 									<a href="#"><i class="fa fa-arrow-right"></i>Update
 										Information</a>
 								</div>

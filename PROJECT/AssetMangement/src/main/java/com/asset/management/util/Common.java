@@ -11,7 +11,7 @@ public class Common {
 	public static String TITLE_MENU="TittleScreen";
 	
 	
-	public static String getDateCurren(String format)
+	public static String getDateCurrent(String format)
 	{
 	     Date date = Calendar.getInstance().getTime();  
 	     DateFormat dateFormat = new SimpleDateFormat(format);  
