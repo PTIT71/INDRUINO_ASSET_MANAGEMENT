@@ -200,8 +200,7 @@ textarea:focus, input:focus{
 								<i style="font-size: 24px" class="fa">&#xf067;</i>TÌM KIẾM
 							</button>
 							<button type="button" style="border-radius: 0"
-								class="btn btn-primary" data-toggle="modal"
-								data-target="#myModal">
+								class="btn btn-primary" onclick="ToLink('CreateAssetGeneral')">
 								<i style="font-size: 24px" class="fa">&#xf067;</i>THÊM MỚI
 							</button>
 							<button type="submit" style="border-radius: 0" onclick="alert();"
@@ -213,11 +212,11 @@ textarea:focus, input:focus{
 								<i style='font-size: 24px' class='fas'>&#xf2ed;</i>XÓA
 							</button>							
 							<button type="button" style="border-radius: 0"
-								data-toggle="modal" data-target="#myModal"
+								onclick="ToLink('ImportCSVAssetGenneral')"
 								class="btn btn-primary">
 								<i style="font-size: 24px" class="fa">&#xf1c3;</i>NHẬP EXCEL
 							</button>
-							<button type="submit" style="border-radius: 0"
+							<button type="button" style="border-radius: 0" data-toggle="modal" data-target="#myModal"
 								onclick="GetSelected()" class="btn btn-primary">
 								<i style="font-size: 24px" class="fa">&#xf1c3;</i>XUẤT EXCEL
 							</button>

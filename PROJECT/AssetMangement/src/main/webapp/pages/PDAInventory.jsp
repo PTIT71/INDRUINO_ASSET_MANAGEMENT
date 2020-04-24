@@ -199,13 +199,13 @@ button[type="button"] {
 					<form action="checkout">
 						<div class="form-group" style="margin-bottom: 0px;">
 							<label for="email" style="font-weight: 700;">Mã nhân
-								viên:</label> <input type="text" class="form-control iset3d"
+								viên:</label> <input type="text" class="form-control iset3d" name="username"
 								placeholder="Enter email" id="email">
 						</div>
-						<input type="text" style="display: none;" id="id_session" value="${lstInventory.get(0).getInventory_session_id()}" />
+						<input type="text" style="display: none;" id="id_session" name="id_session"  value="${lstInventory.get(0).getInventory_session_id()}" />
 						<div class="form-group" style="margin-bottom: 0px;">
 							<label for="pwd" style="font-weight: 700;">Mật khẩu:</label> <input
-								type="password" class="form-control iset3d"
+								type="password" class="form-control iset3d" name="password"
 								placeholder="Enter password" id="pwd">
 						</div>
 						<button type="submit" style="margin-top: 10px;" onclick="ToLink('authentication")"

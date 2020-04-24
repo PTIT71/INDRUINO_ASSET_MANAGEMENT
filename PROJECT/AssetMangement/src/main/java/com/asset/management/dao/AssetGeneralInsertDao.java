@@ -52,6 +52,32 @@ public class AssetGeneralInsertDao {
 		return result;
 	}
 	
+	public int excuteData(AssetObject asset) throws SQLException
+	{
+		int result = 0;
+		
+		DatabaseConnection conn = new DatabaseConnection();
+		Connection connectString = conn.getConnection();
+		PreparedStatement sqlStatement = connectString.prepareStatement(getSql());
+		//System.out.println(getSql());
+		
+			sqlStatement.setString(1,asset.getId());
+			sqlStatement.setString(2,asset.getRFID());
+			sqlStatement.setString(3,asset.getName());
+			System.out.println(asset.getName());
+			sqlStatement.setString(4,asset.getModel());
+			sqlStatement.setString(5,asset.getSeries());
+			sqlStatement.setString(6,asset.getDepartment());
+			sqlStatement.setString(7,asset.getAccountant_CD());
+			sqlStatement.setString(8,asset.getDateStart());
+			sqlStatement.setString(9,asset.getPrice());
+			sqlStatement.setString(10,asset.getNote());
+			
+			 result = sqlStatement.executeUpdate();
+		
+		return result;
+	}
+	
 	public String getIDSetup()
 	{
 		DateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");

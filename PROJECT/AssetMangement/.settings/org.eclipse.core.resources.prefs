@@ -1,7 +1,9 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/asset/management/controller/AssetController.java=UTF-8
 encoding//src/main/java/com/asset/management/controller/CompanyManagementController.java=UTF-8
+encoding//src/main/java/com/asset/management/controller/CreateAssetGeneralController.java=UTF-8
 encoding//src/main/java/com/asset/management/controller/CreateInventorySessionAcction.java=UTF-8
+encoding//src/main/java/com/asset/management/controller/ImportCSVAssetGeneral.java=UTF-8
 encoding//src/main/java/com/asset/management/controller/InventoryManagementContorller.java=UTF-8
 encoding//src/main/java/com/asset/management/controller/InventorySessionController.java=UTF-8
 encoding//src/main/java/com/asset/management/controller/OrganizationController.java=UTF-8

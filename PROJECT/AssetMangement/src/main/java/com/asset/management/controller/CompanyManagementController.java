@@ -30,7 +30,7 @@ public class CompanyManagementController {
 	@RequestMapping("company-mangement")
 	public String init(ModelMap modelMap, HttpServletRequest request) 
 	{
-		modelMap.addAttribute("TittleScreen","MÀN HÌNH QUẢN L�? CÔNG TY");
+		modelMap.addAttribute("TittleScreen","MÀN HÌNH QUẢN LÝ CÔNG TY");
 		CompanySelectDao companySelectDao = new CompanySelectDao();
 		List<CompanyModel> lstCompany = null;
 		try {
@@ -159,11 +159,11 @@ public class CompanyManagementController {
 	public String CompanyInsertAction(@RequestParam("file-name") MultipartFile excelFile , ModelMap modelMap, HttpServletRequest request) throws SQLException, UnsupportedEncodingException
 	{
 		
-		File file = null;
-		file = UploadFileHelper.simpleUpload(excelFile, request, true, "images",request.getSession());
+		//File file = null;
+		//file = UploadFileHelper.simpleUpload(excelFile, request, true, "images",request.getSession());
 		// Get form
 		CompanyForm form = new CompanyForm(request);
-		form.setFile_name(file.getName());
+		//form.setFile_name(file.getName());
 		//Valitaion form
 		String validationName = "";
 		//Tên công ty

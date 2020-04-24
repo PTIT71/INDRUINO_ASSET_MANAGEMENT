@@ -2,6 +2,27 @@
 {
 	float: left;
 }
+.general-setting
+{
+	margin-top:10px;
+}
+
+.title-feature button i {
+	margin-right: 10px;
+}
+
+.title-feature button {
+	height: 100%;
+	margin-top: 0px;
+}
+
+.title-feature {
+	background-color: #bdc6e2;
+	padding-left: 10px;
+	font-size: 22px;
+	height: 41px;
+}
+
 .container
 {
 	padding: 0;
@@ -70,7 +91,6 @@
 .btn
 {
 	border-radius: 0px;
-	border: 1px solid #B4B8B4;
 }
 input[type="text"],input[type="password"],input[type="email"],input[type="date"]
 {

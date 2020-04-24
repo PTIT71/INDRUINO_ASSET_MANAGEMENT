@@ -72,6 +72,10 @@ public class UserSelectDao {
 			{
 				sql.append(" AND NAME = ").append("'" + user.getName() + "'");
 			}
+			if(user.getPasword()!=null && user.getPasword().trim().length() >0)
+			{
+				sql.append(" AND PASSWORD = ").append("'" + user.getPasword() + "'");
+			}
 		}
 		
 		return sql.toString();

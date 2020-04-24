@@ -38,8 +38,8 @@ public class UploadFileHelper {
 				}
 				byte[] bytes = file.getBytes();
 				String rootPath = applicationPath;
-				//File dir = new  File(rootPath + File.separator + upload_folder);
-				File dir = new  File("E:\\2020\\LUANVANTOTNGHIEP\\INDRUINO_ASSET_MANAGEMENT\\PROJECT\\AssetMangement\\src\\main\\webapp\\resources\\images" );
+				File dir = new  File(rootPath + File.separator + upload_folder);
+				//File dir = new  File("E:\\2020\\LUANVANTOTNGHIEP\\INDRUINO_ASSET_MANAGEMENT\\PROJECT\\AssetMangement\\src\\main\\webapp\\resources\\images" );
 				
 				if(dir.exists())
 				{

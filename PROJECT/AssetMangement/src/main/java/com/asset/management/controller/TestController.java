@@ -17,7 +17,7 @@ public class TestController {
 	@RequestMapping("thinhkhung")
 	public String init(ModelMap modelMap, HttpServletRequest request) throws SQLException
 	{
-		modelMap.addAttribute("TittleScreen","MÀN HÌNH QUẢN L�? CÔNG TY");
+		modelMap.addAttribute("TittleScreen","MÀN HÌNH QUẢN LÝ CÔNG TY");
 	
 		
 		return "/pages/CompanyManage.jsp";

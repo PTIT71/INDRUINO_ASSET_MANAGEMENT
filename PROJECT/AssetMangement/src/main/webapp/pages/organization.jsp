@@ -54,7 +54,7 @@ img {
 		<div class="menu-general-manager">
 			<div
 				class="menu-general-manager-item  zoom shadow-sm p-3 mb-5 bg-white rounded">
-				<a href="asset"> <img alt="discuss" style="width: 100%"
+				<a href="AssetManagementGeneral"> <img alt="discuss" style="width: 100%"
 					src="./resources/images/ic_viettien.png">
 					<p style="font-size: 18px; text-align: center; font-weight: 700">VIETTIEN</p>
 				</a>

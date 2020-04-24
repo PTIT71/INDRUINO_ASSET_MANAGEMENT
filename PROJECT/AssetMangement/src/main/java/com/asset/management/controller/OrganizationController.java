@@ -14,7 +14,7 @@ import com.asset.management.util.Common;
 public class OrganizationController {
 	@RequestMapping("/organization")
 	public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
-		String NAME = "MÀN HÌNH QUẢN L�? TỔ CHỨC";
+		String NAME = "MÀN HÌNH QUẢN LÝ TỔ CHỨC";
 		ModelAndView mv = new ModelAndView();
 		mv.addObject(Common.TITLE_MENU, NAME);
 		mv.setViewName("/pages/organization.jsp");

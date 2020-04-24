@@ -1,7 +1,12 @@
 package com.asset.management.model;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletRequest;
+
 public class AssetObject {
 	
+	private String id;
 	private String RFID;
 	private String Name;
 	private String Model;
@@ -12,11 +17,33 @@ public class AssetObject {
 	private String  Price;
 	private String Note;
 	
+	public AssetObject(HttpServletRequest request) throws UnsupportedEncodingException
+	{
+		request.setCharacterEncoding("UTF-8");
+		this.Name = request.getParameter("asset_name");
+		this.RFID = request.getParameter("asset_rfid");
+		this.Accountant_CD = request.getParameter("asset_accountant");
+		this.Model = request.getParameter("asset_model");
+		this.Series = request.getParameter("asset_series");
+		this.Department = request.getParameter("asset_department");
+		this.DateStart = request.getParameter("asset_date");
+		this.Note = request.getParameter("asset_note");
+		this.Price = request.getParameter("asset_price");
+	}
+	
+	
+	
 	public String getRFID() {
 		return RFID;
 	}
 	public void setRFID(String rFID) {
 		RFID = rFID;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String Id) {
+		id = Id;
 	}
 	public String getName() {
 		return Name;
