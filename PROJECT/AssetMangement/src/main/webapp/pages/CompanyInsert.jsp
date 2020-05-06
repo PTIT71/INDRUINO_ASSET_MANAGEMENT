@@ -21,7 +21,8 @@
 <body>
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	<jsp:include page="/common/subHeaderEmpty.jsp"></jsp:include>
-	<s:form action="company-insert-action" method="POST" commandName="excelFile" enctype="multipart/form-data">
+	<s:form action="company-insert-action" method="POST"
+		commandName="excelFile" enctype="multipart/form-data">
 		<div style="margin: 10px">
 			<div class="title-feature">
 				<div class="title-feature-sub">
@@ -49,21 +50,28 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="row">
+
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label class="title_input">TÊN GỌN:</label> <input type="text"
+									class="form-control" name="shortName">
+							</div>
+						</div>
 						<div class="col-sm-2">
 							<img id="logoimage"
 								style="width: 80px; height: 80px; border: 2px solid black"
 								src="E:\2020\LUANVANTOTNGHIEP\INDRUINO_ASSET_MANAGEMENT\PROJECT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\AssetMangement\images\1586698059892.png" />
 						</div>
-						<div class="col-sm-10">
+						<div class="col-sm-5">
 							<label class="title_input">LOGO CÔNG TY:</label>
-							
-								<div class="custom-file">
-									<input type="file" id="logocompany" name="file-name"
-										class="custom-file-input" id="customFile"> <label
-										class="custom-file-label" for="customFile">Chọn hình
-										ảnh</label>
-								</div>
-							
+
+							<div class="custom-file">
+								<input type="file" id="logocompany" name="file-name"
+									class="custom-file-input" id="customFile"> <label
+									class="custom-file-label" for="customFile">Chọn hình
+									ảnh</label>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -153,44 +161,32 @@
 	</s:form>
 </body>
 <script type="text/javascript">
+	$(document).ready(function() {
 
-$(document).ready(function(){
-	
-	 $("#btnabc").click(function(event) {
-		 
-	        // Stop default form Submit.
-	        event.preventDefault();
-	 
-	        // Call Ajax Submit.
-	 
-	        ajaxSubmitForm();
-	 
-	    });
-	 
-	 $('#logocompany').change(function(){
+		$("#btnabc").click(function(event) {
+
+			// Stop default form Submit.
+			event.preventDefault();
+
+			// Call Ajax Submit.
+
+			ajaxSubmitForm();
+
+		});
+
+		$('#logocompany').change(function() {
 			$.ajax({
-				type:'GET',
-				url:'http://localhost:8080/AssetMangement/testajax',
-				success: function(result)
-				{
+				type : 'GET',
+				url : 'http://localhost:8080/AssetMangement/testajax',
+				success : function(result) {
 					//$('#logoimage').href(result);
 					document.getElementById("logoimage").src = result;
 				}
-			
+
 			});
 		});
-	 
+
 	});
-	
-
-	
-	
-	
-	
-	
-	
-
-
 
 	//hàm chọn dữ liệu
 	function GetSelected() {

@@ -21,19 +21,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.asset.management.dao.AssetGeneralSelectDao;
+import com.asset.management.dao.CheckingInventoryInsertDao;
+import com.asset.management.dao.InventoryCheckingSelectDao;
 import com.asset.management.dao.InventorySessionPermissionSelectDao;
 import com.asset.management.dao.InventorySessionSelectDao;
 import com.asset.management.dao.UserDao;
 import com.asset.management.dao.UserSelectDao;
 import com.asset.management.database.DatabaseConnection;
+import com.asset.management.form.AssetGeneralFormSearch;
 import com.asset.management.helper.UploadFileHelper;
 import com.asset.management.model.AssetObject;
 import com.asset.management.model.ExcelFile;
+import com.asset.management.model.InventoryChecking;
 import com.asset.management.model.InventorySession;
 import com.asset.management.model.InventorySessionPermission;
 import com.asset.management.model.UserModel;
 import com.asset.management.util.Common;
 import com.asset.management.util.CommonSQL;
+import com.asset.management.util.Constants;
 import com.asset.management.util.LocationDirection;
 import com.asset.management.util.UrlRedirection;
 
@@ -86,6 +92,7 @@ public class PDACheckoutInventoryController {
 							inventorySessionPermission);
 					List<InventorySessionPermission> lst = inventorySessionPermissionSelectDao.excute();
 					if (lst.size() > 0) {
+						mv.addObject("session_id", Session_ID);
 						mv.setViewName("pages/PDACheckoutInventory.jsp");
 					} else {
 						InventorySessionSelectDao inventorySessionSelectDao = new InventorySessionSelectDao();
@@ -139,6 +146,7 @@ public class PDACheckoutInventoryController {
 			mv.addObject("message", "Tên đăng nhập là bắt buộc");
 			mv.setViewName("pages/PDAInventory.jsp");
 		}
+		mv.addObject("session_id", Session_ID);
 		return mv;
 	}
 
@@ -146,46 +154,81 @@ public class PDACheckoutInventoryController {
 	public ModelAndView check(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		String rfid = request.getParameter("rfid");
-		Connection conn = null;
-
-		Statement stmt = null;
-		ResultSet result = null;
-		List<T> results = new ArrayList<T>();
+		String inventory_session_id = request.getParameter("InventorySessionCD");
+		AssetGeneralFormSearch assetForm = new AssetGeneralFormSearch();
+		assetForm.setRFID(rfid);
+		InventoryChecking inventoryChecking = new InventoryChecking();
+		inventoryChecking.setAsset_Rfid(rfid);
+		inventoryChecking.setInventorySessionCD(inventory_session_id);
+		AssetGeneralSelectDao assetGeneralSelectDao = new AssetGeneralSelectDao(assetForm);
+		
 		try {
-			Class.forName(CommonSQL.DRIVERSQLSERVER).newInstance();
-			conn = DriverManager.getConnection(CommonSQL.DB_URL, CommonSQL.DB_USER, CommonSQL.DB_PASS);
-			stmt = conn.createStatement();
-			result = null;
-			String pa, us;
-			result = stmt.executeQuery("select * from ASSETS_GENERAL WHERE ASSET_RFID = '" + rfid + "'");
-			AssetObject Asset = new AssetObject();
-			while (result.next()) {
-				Asset.setRFID(result.getString("ASSET_RFID"));
-				Asset.setName(result.getString("ASSET_NAME"));
-				Asset.setModel(result.getString("ASSET_MODEL"));
-				Asset.setSeries(result.getString("ASSET_SERIES"));
-				Asset.setDepartment(result.getString("ASSET_DEPARTMENT"));
-				Asset.setAccountant_CD(result.getString("ASSET_ACCOUNTANT"));
-				Asset.setDateStart(result.getString("ASSET_DATE_INVEST"));
-				Asset.setPrice(result.getString("ASSET_PRICE"));
-				Asset.setNote(result.getString("ASSET_NOTE"));
-			}
-
-			if (Asset.getRFID() != null && Asset.getRFID().length() > 0) {
-				// Tìm thấy tài sản:
-				mv.addObject("Asset", Asset);
-				// Tài sản đã được kiểm kê
-				// Tài sản chưa được kiểm kê
+			List<AssetObject> lstAsset = assetGeneralSelectDao.excute();
+			if (lstAsset.size()  > 0) {
+				if(lstAsset.size()==1)
+				{
+					//Check xem thử nó đã được kiểm kê chưa:
+					if(isNotExistInventoryChecking(inventoryChecking))
+					{
+						inventoryChecking.setInventorySessionChecking_CD(Common.getDateCurrent("YYYYMMDDHHMMSS"));
+						HttpSession session =  request.getSession();
+						String user = (String) session.getAttribute(Constants.SESSION_USER_ID);
+						inventoryChecking.setUserChecking(user);
+						inventoryChecking.setInventory_Date(Common.getDateCurrent("dd/mm/yyyy"));
+						inventoryChecking.setStatus("1");
+						CheckingInventoryInsertDao checkingInventoryInsertDao = new CheckingInventoryInsertDao(inventoryChecking);
+						try
+						{
+							checkingInventoryInsertDao.excute();
+							mv.addObject("Asset", lstAsset.get(0));
+						}
+						catch(Exception e)
+						{
+							mv.addObject(Common.MESSAGE_ERROR, "KIỂM KÊ TÀI SẢN LỖI");
+						}	
+					}
+					else
+					{
+						mv.addObject(Common.MESSAGE_ERROR, "TÀI SẢN NÀY ĐÃ ĐƯỢC KIỂM KÊ TRƯỚC ĐÓ");
+					}
+				}
+				else
+				{
+					mv.addObject(Common.MESSAGE_ERROR, "Tìm thấy nhiều hơn 1 tài sản tương tự<br>Hãy kiểm tra lại");
+				}
 			} else {
 				mv.addObject("message", "Không tìm thấy tài sản");
 			}
-
-			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			//e1.printStackTrace();
+			mv.addObject("message", e1.toString());
 		}
+		mv.addObject("session_id", inventory_session_id);
 		mv.setViewName("pages/PDACheckoutInventory.jsp");
 		return mv;
+	}
+
+	private boolean isNotExistInventoryChecking(InventoryChecking inventoryChecking) {
+		
+		
+		InventoryCheckingSelectDao inventoryCheckingSelectDao = new InventoryCheckingSelectDao(inventoryChecking);
+		try {
+			List<InventoryChecking> lstInvChecking = inventoryCheckingSelectDao.excute();
+			if(lstInvChecking.size() > 0)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

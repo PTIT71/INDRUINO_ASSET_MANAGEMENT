@@ -17,10 +17,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.asset.management.dao.CheckingAsssetNewSelectDao;
+import com.asset.management.dao.InventoryCheckingSelectDao;
 import com.asset.management.dao.InventorySessionSelectDao;
 import com.asset.management.model.AssetObject;
+import com.asset.management.model.CheckingAssetNew;
+import com.asset.management.model.InventoryChecking;
 import com.asset.management.model.InventorySession;
+import com.asset.management.table.AssetManagementTable;
+import com.asset.management.util.Common;
 import com.asset.management.util.CommonSQL;
+import com.asset.management.util.Constants;
 
 @Controller
 public class InventoryManagementContorller {
@@ -30,6 +37,34 @@ public class InventoryManagementContorller {
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("TittleScreen","MÀN HÌNH QUẢN LÝ KIỂM KÊ");
+		String session_id = request.getParameter("InventoryID");
+		InventoryChecking inventoryChecking = new InventoryChecking();
+		inventoryChecking.setInventorySessionCD(session_id);
+	    
+		InventoryCheckingSelectDao inventoryCheckingSelectDao = new InventoryCheckingSelectDao(inventoryChecking);
+		List<AssetManagementTable> lstChecking = inventoryCheckingSelectDao.excuteAssetManagementTable();
+		CheckingAssetNew checkingAssetNew = new CheckingAssetNew();
+		checkingAssetNew.setChecking_session(inventoryChecking.getInventory_Session_CD());
+		CheckingAsssetNewSelectDao checkingAsssetNewSelectDao = new CheckingAsssetNewSelectDao(checkingAssetNew);
+		List<AssetManagementTable> lstChecking2 = checkingAsssetNewSelectDao.excuteAssetManagementTable();
+		if(lstChecking2.size()>0)
+		{
+			for(int i=0;i<lstChecking2.size();i++)
+			{
+				lstChecking.add(lstChecking2.get(i));
+			}
+		}
+		if(lstChecking.size() > 0)
+		{
+			mv.addObject("lstChecking", lstChecking);
+			mv.addObject(Constants.MESSAGE_NOTIFICATION, "TÌM THẤY  "+ lstChecking.size() +" TÀI SẢN KIỂM KÊ");
+		}
+		else
+		{
+			mv.addObject(Common.MESSAGE_ERROR, "KHÔNG TÌM THẤY MÃ KIỂM KÊ NÀO");
+		}
+		
+		
 		mv.setViewName("/pages/InventoryManagement.jsp");
 		
 		return mv;

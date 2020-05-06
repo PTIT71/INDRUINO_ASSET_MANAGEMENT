@@ -1,0 +1,107 @@
+.title-feature-sub
+{
+	float: left;
+}
+.general-setting
+{
+	margin-top:10px;
+}
+
+.title-feature button i {
+	margin-right: 10px;
+}
+
+.title-feature button {
+	height: 100%;
+	margin-top: 0px;
+}
+
+.title-feature {
+	background-color: #bdc6e2;
+	padding-left: 10px;
+	font-size: 22px;
+	height: 41px;
+}
+
+.container
+{
+	padding: 0;
+	margin: auto;
+}
+.link-header {
+	text-decoration: none;
+	color: white;
+	cursor: pointer;
+}
+
+.link-header:hover {
+	color: white;
+}
+
+.nameuser {
+	background-color: transparent;
+	border: 0px;
+	font-size: 16px;
+	color: white !important;
+	margin-left:10px;
+	line-height: 60px
+}
+.drop-menu
+{
+	top: -14px !important;
+    left: 0px !important;
+    right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+.drop-menu li:hover
+{
+	background-color: gray;
+}
+.drop-menu li
+{
+	height: 37px;
+	line-height:37px;
+    padding-left: 10px;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    cursor: pointer;
+}
+.drop-menu li a
+{
+	text-decoration: none;
+}
+
+.iconuser {
+	font-size: 24px;
+	color: white;
+	line-height: 60px;
+	float: left;
+	margin-right:10px;
+}
+.btn-paging
+{
+	padding: 0px; 
+	line-height: 30px; 
+	background-color: #bdc6e2; 
+	border-radius: 0; 
+	width: 30px; 
+	height: 30px
+}
+.btn
+{
+	border-radius: 0px;
+}
+input[type="text"],input[type="password"],input[type="email"],input[type="date"]
+{
+	background-color: white !important;
+	border: 1px solid #0E0E0E;
+	border-radius: 0px;
+}
+p.message_error
+{
+	width: 100%;
+	color: red;
+	text-align: center;
+	font-weight: 700;
+}

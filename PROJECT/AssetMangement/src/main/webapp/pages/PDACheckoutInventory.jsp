@@ -54,11 +54,6 @@
 	font-weight: 700;
 }
 
-
-
-
-
-
 button[type="submit"] {
 	border-radius: 0px;
 	border: 1px solid #e0e0e0;
@@ -77,26 +72,23 @@ button[type="button"] {
 	border-radius: 0px;
 }
 
-input[type="text"]#rfid
-{
+input[type="text"]#rfid {
 	border-radius: 0px;
 	border: 1px solid #e0e0e0;
-	height:50px;
+	height: 50px;
 	font-size: 35px;
 	font-weight: 700;
 	text-align: center;
-	
 }
-
 </style>
 <script>
-function getfocus() {
-  document.getElementById("rfid").focus();
-}
+	function getfocus() {
+		document.getElementById("rfid").focus();
+	}
 
-function losefocus() {
-  document.getElementById("myAnchor").blur();
-}
+	function losefocus() {
+		document.getElementById("myAnchor").blur();
+	}
 </script>
 </head>
 <body onload="return getfocus()">
@@ -112,15 +104,21 @@ function losefocus() {
 		</div>
 	</div>
 	<form action="PDACheckInventory"
-		style="width: 90%; margin: auto; margin-top: 10px" method="get">
+		style="width: 90%;  margin: auto; margin-top: 10px" method="get">
 		<div class="form-group">
-			<label class="title" for="usr">MÃ KIỂM KÊ:</label>
-			<input type="text" style="background-color: green;" readonly="readonly" class="form-control" name="InventorySessionCD" id="InventorySessionCD">
+			<label class="title" for="usr">MÃ KIỂM KÊ:</label> <input type="text"
+				style="background-color: green;" readonly="readonly"
+				class="form-control" value="${session_id}" name="InventorySessionCD"
+				id="InventorySessionCD">
 		</div>
 		<div class="form-group">
 			<input type="text" class="form-control" name="rfid" id="rfid">
 
 		</div>
+		<button type="submit" class="btn btn-primary "
+			style="float: right; width: 120px;">QUAY LẠI</button>
+			<button type="button" class="btn btn-primary " onclick="ToLink('PDACreateNewInventory?session_id=${session_id}')"
+			style="float: right;  width: 120px;">BÁO MỚI</button>
 		<button type="submit" class="btn btn-primary "
 			style="float: right; width: 120px;">KIỂM TRA</button>
 	</form>
@@ -131,7 +129,16 @@ function losefocus() {
 			</div>
 		</c:if>
 	</div>
-
+	<div class="row" style="width:100%">
+		<div style="width: 100%; text-align: center; margin-top:10px;">
+			<form>
+				<button type="submit" class="btn btn-primary "
+					style=" width: 120px;">BÁO MỚI</button></br>
+				<button type="submit" class="btn btn-primary "
+					style=" width: 200px; margin-top:10px;">TIẾP TỤC KIỂM KÊ</button>
+			</form>
+		</div>
+	</div>
 	<c:if test="${Asset != null}">
 		<table class="table table-bordered"
 			style="width: 90%; margin: auto; margin-top: 12px;">

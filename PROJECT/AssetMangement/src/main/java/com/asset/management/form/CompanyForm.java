@@ -20,6 +20,15 @@ public class CompanyForm {
 	private String level;
 	private String desciption;
 	private String userInsert;
+	private String shortName;
+	public String getShortName() {
+		return shortName;
+	}
+
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+
 	public String getUserInsert() {
 		return userInsert;
 	}
@@ -53,7 +62,7 @@ public class CompanyForm {
 		this.website = request.getParameter("website").trim();
 		this.level = request.getParameter("level").trim();
 		this.desciption = request.getParameter("description").trim();
-		
+		this.shortName = request.getParameter("shortName").trim();
 		HttpSession session_en=request.getSession();  
 		this.userInsert =  session_en.getAttribute("NAME").toString().trim();
 		

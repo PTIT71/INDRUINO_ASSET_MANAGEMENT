@@ -1,12 +1,16 @@
 package com.asset.management.model;
 
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.asset.management.util.Common;
+
 public class AssetObject {
 	
-	private String id;
+	
 	private String RFID;
 	private String Name;
 	private String Model;
@@ -16,8 +20,14 @@ public class AssetObject {
 	private String DateStart;
 	private String  Price;
 	private String Note;
+	private String id;
+	private String Company_CD;
 	
-	public AssetObject(HttpServletRequest request) throws UnsupportedEncodingException
+	
+
+
+
+	public AssetObject(HttpServletRequest request) throws UnsupportedEncodingException, ParseException
 	{
 		request.setCharacterEncoding("UTF-8");
 		this.Name = request.getParameter("asset_name");
@@ -26,9 +36,11 @@ public class AssetObject {
 		this.Model = request.getParameter("asset_model");
 		this.Series = request.getParameter("asset_series");
 		this.Department = request.getParameter("asset_department");
-		this.DateStart = request.getParameter("asset_date");
+		String  date =  Common.ConvertStringToDateStr(request.getParameter("asset_date"), "yyyy-mm-dd","dd/mm/yyyy");
+		this.DateStart = date;
 		this.Note = request.getParameter("asset_note");
 		this.Price = request.getParameter("asset_price");
+		this.setId(Common.getDateCurrent("YYYYMMDDHHMMSS"));
 	}
 	
 	
@@ -39,12 +51,7 @@ public class AssetObject {
 	public void setRFID(String rFID) {
 		RFID = rFID;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String Id) {
-		id = Id;
-	}
+	
 	public String getName() {
 		return Name;
 	}
@@ -92,6 +99,21 @@ public class AssetObject {
 	}
 	public void setNote(String note) {
 		Note = note;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String Id) {
+		id = Id;
+	}
+	public String getCompany_CD() {
+		return Company_CD;
+	}
+
+
+
+	public void setCompany_CD(String company_CD) {
+		Company_CD = company_CD;
 	}
 	public AssetObject(String rFID, String name, String model, String series, String department, String accountant_CD,
 			String dateStart, String price, String note) {

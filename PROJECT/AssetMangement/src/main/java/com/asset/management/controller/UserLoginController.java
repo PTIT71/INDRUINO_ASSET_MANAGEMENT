@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,13 +19,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.asset.management.dao.UserDao;
+import com.asset.management.dao.UserSelectDao;
 import com.asset.management.database.DatabaseConnection;
 import com.asset.management.helper.UploadFileHelper;
 import com.asset.management.model.ExcelFile;
 import com.asset.management.model.UserModel;
 import com.asset.management.util.Common;
+import com.asset.management.util.Constants;
 import com.asset.management.util.LocationDirection;
+import com.asset.management.util.SystemControl;
 import com.asset.management.util.UrlRedirection;
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 @Controller
 public class UserLoginController {
@@ -89,42 +94,35 @@ public class UserLoginController {
 		if (usn != null && usn.length() > 0) {
 			//Kiểm tra password rỗng
 			if (pwd != null && pwd.length() > 0) {
-				DatabaseConnection conn = new DatabaseConnection();
-				Connection connectString = conn.getConnection();
-				if (connectString != null) {
-					Statement stmt = connectString.createStatement();
-					ResultSet result = null;
-					UserDao userDao = new UserDao();
-					result = stmt.executeQuery(userDao.getUserDao());
-					ArrayList<UserModel> lstUser =new ArrayList<UserModel>();
-					while (result.next()) {
-						UserModel user = new UserModel();
-						user.setName(result.getString("NAME"));
-						user.setPasword(result.getString("PASSWORD"));
-						user.setEmployment_CD(result.getString("EMPLOYEE_CD"));
-						lstUser.add(user);
-					}
-					
+				
+				UserModel user = new UserModel();
+				user.setPasword(pwd);
+				user.setEmployee_cd(usn);
+				UserSelectDao userSelectDao = new UserSelectDao(user);
+				List<UserModel> lstUser = userSelectDao.excute();
+
 					if(lstUser.size() >0)
 					{
-						for(int i=0;i<lstUser.size();i++)
-						{
-							  if(lstUser.get(i).getEmployment_CD().trim().equals(usn.trim()) &&
-							  lstUser.get(i).getPasword().trim().equals(pwd.trim())) { HttpSession
-							  session=request.getSession();
-							  //Lưu tên trong session
-							  session.setAttribute("NAME",lstUser.get(i).getName());
-							  //Lưu Mã nhân viên trong session
-							  session.setAttribute("ID",lstUser.get(i).getEmployment_CD()); String url =
-							 UrlRedirection.REDIRECT+UrlRedirection.FEATURE_SYSTEM; mv.setViewName(url);
-							 return mv; } else {
-							 mv.addObject("message","Tài khoản đăng nhập không hợp lệ !"); String url =
-							 LocationDirection.LOGIN_LOCATE; mv.setViewName(url); return mv; }
+						
+					  HttpSession session=request.getSession();
+					  //Lưu tên trong session
+					  session.setAttribute(Constants.SESSION_USER_NAME,lstUser.get(0).getName());
+					  //Lưu Mã nhân viên trong session
+					  session.setAttribute(Constants.SESSION_USER_ID,lstUser.get(0).getEmployment_CD()); 
+					  String url = UrlRedirection.REDIRECT+UrlRedirection.FEATURE_SYSTEM; mv.setViewName(url);
+					  session.setAttribute(Constants.SESSION_USER_CMPN_CD,lstUser.get(0).getCompany_cd()); 
+					  return mv; 
 							 
-						}
+						
 					}
+					else 
+					{
+						 mv.addObject("message","Tài khoản đăng nhập không hợp lệ !"); String url =
+						 LocationDirection.LOGIN_LOCATE; mv.setViewName(url); return mv; 
+					}
+						 
+					
 				}
-			}
 		}
 		mv.addObject("message","Xin nhập đầy đủ thông tin!");
 		String url = LocationDirection.LOGIN_LOCATE;

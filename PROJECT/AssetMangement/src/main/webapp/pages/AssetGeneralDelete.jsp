@@ -1,0 +1,238 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Asset management</title>
+<jsp:include page="/common/library.jsp"></jsp:include>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+<script src="./resources/javascript/message/bootbox.all.js"></script>
+<script src="./resources/javascript/message/bootbox.all.min.js"></script>
+<script src="./resources/javascript/message/bootbox.js"></script>
+<script src="./resources/javascript/message/bootbox.locales.js"></script>
+<script src="./resources/javascript/message/bootbox.locales.min.js"></script>
+<script src="./resources/javascript/message/bootbox.min.js"></script>
+</head>
+
+<style>
+.title-feature button i {
+	margin-right: 10px;
+}
+
+.title-feature button {
+	height: 100%;
+	margin-top: 0px;
+}
+
+.title-feature {
+	background-color: #bdc6e2;
+	padding-left: 10px;
+	font-size: 22px;
+	height: 40px;
+}
+
+.table-data {
+	border: 2px solid black;
+}
+
+.table-data tbody tr {
+	line-height: 22px;
+}
+
+.table-data thead th {
+	padding: 1px 1px 1px 1px;
+}
+
+.table-data td {
+	border-right: 2px solid black;
+	border-bottom-style: dashed;
+	height: 18px;
+	padding: 1px 4px 1px 4px;
+}
+
+.table-data th {
+	border: 1px solid black;
+}
+
+.table-data thead th {
+	border: 2px solid black;
+	text-align: center;
+	background-color: #bdc6e2;
+}
+
+.table-search tr {
+	height: 22px;
+}
+
+.table-search tr td input {
+	width: 100%;
+	height: 30px;
+	border: 1px solid black;
+}
+
+.table-search tr td select {
+	width: 100%;
+	height: 30px;
+}
+
+.table-search tr td {
+	padding: 2px 2px 2px 2px;
+	border: 2px solid black;
+}
+
+.table-search tr .title {
+	font-weight: 700;
+	padding: 5px 4px 0px 4px;
+	background-color: #0089FF;
+	color: white;
+}
+
+.selectList {
+	cursor: pointer;
+}
+
+.selectList-item option {
+	cursor: pointer;
+}
+textarea:focus, input:focus{
+    outline: none;
+}
+.title_input
+{
+	font-weight: 700;
+	float:left;
+}
+.content_input
+{
+	float: left;
+	margin-left:10px;
+}
+
+
+</style>
+<body onload="Pagination()">
+	<jsp:include page="/common/header.jsp"></jsp:include>
+	<jsp:include page="/common/subHeaderEmpty.jsp"></jsp:include>
+	<div style="margin-top: 10px; padding: 0px; width: 95%; margin: auto">
+		<div class="row">
+			<div class="col-sm-12 general-setting shadow-sm p-3 mb-5 bg-gray">
+				<form action="AssetGeneralDelete" method="POST">
+					<div class="title-feature">
+						<div class="text-right">
+							<input type="text" value="${asset.getRFID()}" style="display: none;" name="rfid_code">
+							<button type="submit" style="border-radius: 0" onclick="return checkReason()"
+								class="btn btn-primary" name="delete">
+								<i style='font-size: 24px' class='fas'>&#xf2ed;</i>XÓA TÀI SẢN
+							</button>							
+							<button type="submit" style="border-radius: 0" name="back"
+								class="btn btn-primary">
+								<i style="font-size: 24px" class="fa">&#xf1c3;</i>QUAY LẠI
+							</button>
+						</div>
+					</div>
+				
+				<p class="message_error">${message}</p>
+			    <c:if test="${asset!=null}">
+			    	<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">TÊN TÀI SẢN:</label>
+								<p class="content_input">${asset.getName()}</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">MÃ RFID:</label> 
+								<p class="content_input">${asset.getRFID()}</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">MODEL:</label> 
+								<p class="content_input">${asset.getModel()}</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">SỐ SERIES:</label>
+								<p class="content_input">${asset.getSeries()}</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">ĐƠN VỊ:</label>
+								<p class="content_input">${asset.getDepartment()}</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">MÃ KẾ TOÁN:</label> 
+								<p class="content_input">${asset.getAccountant_CD()}</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">NGÀY ĐẦU TƯ:</label> 
+								<p class="content_input">${asset.getDateStart()}</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">ĐƠN GIÁ:</label> 
+								<p class="content_input">${asset.getPrice()}</p>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="title_input">GHI CHÚ:</label>
+								<p class="content_input">${asset.getNote()}</p>
+							</div>
+						</div>
+						<div class="col-sm-12" id="reason_area" onload="clearReason">
+							<div class="form-group">
+								<label class="title_input">GIẢI TRÌNH LÝ DO XÓA:</label>
+								<textarea style="height: 200px; resize: none;" class="form-control" id="reason_delete" name="reason_delete"></textarea>
+							</div>
+						</div>
+					</div>
+			    </c:if>
+			    </form>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+	var reason = document.getElementById("reason_delete");
+	reason.value = "";
+}
+	);
+function checkReason() {
+	
+	var reason = document.getElementById("reason_delete");
+	
+	if(reason.value.trim().length == 0)
+	{
+		var reason_area = document.getElementById("reason_area");
+		reason_area.style.display = "block";
+		return false;
+	}
+	
+	return true;
+	
+}
+</script>
+
+</html>

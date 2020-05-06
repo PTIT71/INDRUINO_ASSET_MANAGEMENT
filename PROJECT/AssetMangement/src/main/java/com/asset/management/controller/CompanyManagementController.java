@@ -166,38 +166,38 @@ public class CompanyManagementController {
 		//form.setFile_name(file.getName());
 		//Valitaion form
 		String validationName = "";
-		//Tên công ty
-		if(form.getName()==null || form.getName().length()==0){
-			validationName="name";
-		}
-		//�?ịa chỉ
-		if(form.getAddress()==null || form.getAddress().length()==0){
-			validationName += "_address";
-		}
-		//Mã số thuế
-		if(form.getTax() == null || form.getTax().length()==0){
-			validationName += "_tax";
-		}
-		//Số điện thoại
-		if(form.getPhone() ==null || form.getPhone().length()==0){
-			validationName +="_phone";
-		}
-		//email
-		if(form.getEmail()==null || form.getEmail().length()==0){
-			validationName="_email";
-		}
-		//website
-		if(form.getWebsite() == null || form.getWebsite().length()==0){
-			validationName += "_website";
-		}
-		//level
-		if(form.getLevel()==null || form.getLevel().length()==0){
-			validationName += "_level";
-		}
-		//mô tả
-		if(form.getDesciption() ==null || form.getDesciption().length()==0){
-			validationName +="_desciption";
-		}
+//		//Tên công ty
+//		if(form.getName()==null || form.getName().length()==0){
+//			validationName="name";
+//		}
+//		//�?ịa chỉ
+//		if(form.getAddress()==null || form.getAddress().length()==0){
+//			validationName += "_address";
+//		}
+//		//Mã số thuế
+//		if(form.getTax() == null || form.getTax().length()==0){
+//			validationName += "_tax";
+//		}
+//		//Số điện thoại
+//		if(form.getPhone() ==null || form.getPhone().length()==0){
+//			validationName +="_phone";
+//		}
+//		//email
+//		if(form.getEmail()==null || form.getEmail().length()==0){
+//			validationName="_email";
+//		}
+//		//website
+//		if(form.getWebsite() == null || form.getWebsite().length()==0){
+//			validationName += "_website";
+//		}
+//		//level
+//		if(form.getLevel()==null || form.getLevel().length()==0){
+//			validationName += "_level";
+//		}
+//		//mô tả
+//		if(form.getDesciption() ==null || form.getDesciption().length()==0){
+//			validationName +="_desciption";
+//		}
 		
 		
 		//Validation gặp lỗi

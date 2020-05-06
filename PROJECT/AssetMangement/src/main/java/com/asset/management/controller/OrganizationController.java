@@ -16,7 +16,7 @@ public class OrganizationController {
 	public ModelAndView init(HttpServletRequest request, HttpServletResponse response) {
 		String NAME = "MÀN HÌNH QUẢN LÝ TỔ CHỨC";
 		ModelAndView mv = new ModelAndView();
-		mv.addObject(Common.TITLE_MENU, NAME);
+		mv.addObject(Common.TITLE_SCREEN, NAME);
 		mv.setViewName("/pages/organization.jsp");
 		return mv;
 	}

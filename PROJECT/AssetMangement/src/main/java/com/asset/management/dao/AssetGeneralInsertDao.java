@@ -14,8 +14,11 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import com.asset.management.database.DatabaseConnection;
 import com.asset.management.model.AssetObject;
+import com.asset.management.util.SystemControl;
 
 public class AssetGeneralInsertDao {
+	
+	public SystemControl systemControl = null;
 	
 	public AssetGeneralInsertDao()
 	{
@@ -72,6 +75,8 @@ public class AssetGeneralInsertDao {
 			sqlStatement.setString(8,asset.getDateStart());
 			sqlStatement.setString(9,asset.getPrice());
 			sqlStatement.setString(10,asset.getNote());
+			sqlStatement.setString(11,"0");
+			sqlStatement.setString(12,asset.getCompany_CD());
 			
 			 result = sqlStatement.executeUpdate();
 		
@@ -103,6 +108,8 @@ public class AssetGeneralInsertDao {
 		sql.append(" 	,ASSET_DATE_INVEST");
 		sql.append(" 	,ASSET_PRICE");
 		sql.append(" 	,ASSET_NOTE");
+		sql.append(" 	,DELETE_FG");
+		sql.append(" 	,CMPN_CD");
 		sql.append(" )");
 		sql.append(" VALUES");
 		sql.append(" (");
@@ -116,6 +123,8 @@ public class AssetGeneralInsertDao {
 		sql.append(" 	,?");//ASSET_DATE_INVEST
 		sql.append(" 	,?");//ASSET_PRICE
 		sql.append(" 	,?");//ASSET_NOTE
+		sql.append(" 	,?");//DELETE_FG
+		sql.append(" 	,?");//CMPN_CD
 		sql.append(" )");
 		
 		return sql.toString();

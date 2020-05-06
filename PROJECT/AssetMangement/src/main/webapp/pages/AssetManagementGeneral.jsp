@@ -203,29 +203,30 @@ textarea:focus, input:focus{
 								class="btn btn-primary" onclick="ToLink('CreateAssetGeneral')">
 								<i style="font-size: 24px" class="fa">&#xf067;</i>THÊM MỚI
 							</button>
-							<button type="submit" style="border-radius: 0" onclick="alert();"
-								class="btn btn-primary">
-								<i style='font-size: 24px' class='far'>&#xf044;</i> CHỈNH SỬA
-							</button>
-							<button type="submit" style="border-radius: 0"
-								class="btn btn-primary">
-								<i style='font-size: 24px' class='fas'>&#xf2ed;</i>XÓA
-							</button>							
 							<button type="button" style="border-radius: 0"
 								onclick="ToLink('ImportCSVAssetGenneral')"
 								class="btn btn-primary">
 								<i style="font-size: 24px" class="fa">&#xf1c3;</i>NHẬP EXCEL
 							</button>
+							<button type="submit" style="border-radius: 0" 
+								name="reportExcel" class="btn btn-primary">
+								<i style="font-size: 24px" class="fa">&#xf1c3;</i>XUẤT EXCEL
+							</button>
+							<button type="submit" style="border-radius: 0" 
+								name="reportPDF" class="btn btn-primary">
+								<i style="font-size: 24px" class="fa">&#xf1c3;</i>XUẤT PDF
+							</button>
 							<button type="button" style="border-radius: 0" data-toggle="modal" data-target="#myModal"
 								onclick="GetSelected()" class="btn btn-primary">
-								<i style="font-size: 24px" class="fa">&#xf1c3;</i>XUẤT EXCEL
+								<i style="font-size: 24px" class="fa">&#xf1c3;</i>QUAY LẠI
 							</button>
 						</div>
 					</div>
 				</form>
 				<p style="width:100%; text-align: center; color: red; font-weight: 700; margin-top:10px">${message}</p>
 				<c:if test="${listAssetSearch.size() > 0}">
-				<table id="table.data" class="table table-bordered table-data"
+				<p style="width:100%; text-align: right;  font-weight: 700; margin:0px" >Đơn vị: VNĐ</p>
+				<table id="table.data" style="margin-top:0px" class="table table-bordered table-data"
 					style="margin-top: 10px">
 					<thead>
 						<tr>
@@ -252,7 +253,7 @@ textarea:focus, input:focus{
 									type="checkbox" class="form-check-input"
 									style="margin: 0px; padding: 0px; margin-top:7px" value=""></td>
 								<td style="text-align: center;"><%=stt%></td>
-								<td>${p.RFID}</td>
+								<td><a style="text-decoration: none; font-weight: 700" href="AssetGeneralView?rfid_code=${p.RFID}">${p.RFID}</a></td>
 								<td>${p.getName()}</td>
 								<td><input type="text" style="display:inline-block; width:inherit; border:0px;background-color:transparent; " readonly value="${p.getModel()}"></td>
 								<td>${p.getSeries()}</td>
@@ -290,32 +291,6 @@ textarea:focus, input:focus{
 
 				</div>
 			   </c:if>
-			</div>
-		</div>
-	</div>
-	<!-- The Modal -->
-	<div class="modal fade" id="myModal">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">Modal Heading</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<s:form method="POST" commandName="excelFile" action="importexcel"
-						enctype="multipart/form-data">
-						<br />
-      Please select:  <input type="file" name="file">
-						<br>
-						<input type="submit" value="Upload">
-					</s:form>
-				</div>
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				</div>
 			</div>
 		</div>
 	</div>

@@ -2,6 +2,7 @@ package com.asset.management.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.asset.management.dao.AssetGeneralInsertDao;
 import com.asset.management.model.AssetObject;
 import com.asset.management.util.Common;
+import com.asset.management.util.Constants;
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 @Controller
 @RequestMapping("/CreateAssetGeneral")
@@ -23,17 +26,19 @@ public class CreateAssetGeneralController {
 	public ModelAndView init()
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.addObject(Common.TITLE_MENU, "MÀN HÌNH TẠO MỚI TÀI SẢN");
+		mv.addObject(Common.TITLE_SCREEN, "MÀN HÌNH TẠO MỚI TÀI SẢN");
 		mv.setViewName("/pages/CreateAssetGeneral.jsp");
 		return mv;
 	}
 	@RequestMapping(params="save", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8")
-	public ModelAndView save(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException
+	public ModelAndView save(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException, ParseException
 	{
 		request.setCharacterEncoding("UTF-8");
 		AssetObject asset = new AssetObject(request);
+		String CMPN_CD = (String) request.getSession().getAttribute(Constants.SESSION_USER_CMPN_CD);
+		asset.setCompany_CD(CMPN_CD);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject(Common.TITLE_MENU, "MÀN HÌNH TẠO MỚI TÀI SẢN");
+		mv.addObject(Common.TITLE_SCREEN, "MÀN HÌNH TẠO MỚI TÀI SẢN");
 //		AssetObject asset = new AssetObject();
 //		asset.setName(request.getParameter("asset_name"));
 //		asset.setRFID(request.getParameter("asset_rfid"));

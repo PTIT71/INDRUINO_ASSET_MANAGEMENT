@@ -21,24 +21,23 @@
 <body>
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	<jsp:include page="/common/subHeaderEmpty.jsp"></jsp:include>
-	<s:form action="company-insert-action" method="POST" style="width:60%; margin:auto; margin-top:20px;"
-		commandName="excelFile" enctype="multipart/form-data">
+	<s:form method="POST" commandName="excelFile" action="ImportCSVAssetGenneral" style="width:60%; margin:auto; margin-top:20px;" enctype="multipart/form-data">
 		<div class="col-sm-12">
 			<label class="title_input">Chọn file excel:</label>
 
 			<div class="custom-file">
-				<input type="file" id="logocompany" name="file-name"
+				<input type="file"  type="file" name="file"
 					class="custom-file-input" id="customFile"> <label
 					class="custom-file-label" for="customFile"></label>
 			</div>
 			<div class="text-center">
 			<button type="submit" style="margin:auto;border-radius: 0;margin-top:10px;" 
-				class="btn btn-primary">
+				class="btn btn-primary" name="upload">
 				<i style='font-size: 24px' class='far'>&#xf044;</i> UPLOAD
 			</button>
 			<button type="submit" style="margin:auto;border-radius: 0;margin-top:10px;" 
-				class="btn btn-primary">
-				<i style='font-size: 24px' class='far'>&#xf044;</i>Quay trở lại
+				class="btn btn-primary" name="back">
+				<i style='font-size: 24px' class='far'>&#xf044;</i>QUAY LẠI
 			</button>
 			</div>
 			
