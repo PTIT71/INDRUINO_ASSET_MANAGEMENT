@@ -51,8 +51,8 @@
 		 <table class="table  table-feature">
     <tbody>
       <tr>
-        <td><a class="btn  btn-feature" href="organization">QUẢN LÝ TÀI SẢN</a></td>
-        <td><a class="btn  btn-feature" href="BorrowAssetRegister">ĐĂNG KÝ MƯỢN</a></td>
+        <td><a class="btn  btn-feature" href="AssetManagementGeneral">QUẢN LÝ TÀI SẢN</a></td>
+        <td><a class="btn  btn-feature" href="BorrowAssetManagement">ĐĂNG KÝ MƯỢN</a></td>
         <td></td>
         <td><a class="btn  btn-feature btn-admin" href="admin-manager">QUẢN TRỊ HỆ THỐNG</a></td>
       </tr>

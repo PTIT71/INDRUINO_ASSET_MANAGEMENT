@@ -12,6 +12,7 @@ public class Common {
 	
 	public static String TITLE_SCREEN="TittleScreen";
 	public static String MESSAGE_ERROR="message";
+	public static String LIST_COMPANY="lstcmpn";
 	
 	
 	public static String getDateCurrent(String format)

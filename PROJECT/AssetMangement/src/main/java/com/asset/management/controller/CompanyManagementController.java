@@ -27,7 +27,7 @@ import com.asset.management.model.ExcelFile;
 @Controller
 public class CompanyManagementController {
 	
-	@RequestMapping("company-mangement")
+	@RequestMapping("CompanyManagement")
 	public String init(ModelMap modelMap, HttpServletRequest request) 
 	{
 		modelMap.addAttribute("TittleScreen","MÀN HÌNH QUẢN LÝ CÔNG TY");
@@ -209,7 +209,7 @@ public class CompanyManagementController {
 		{
 			CompanyInsertDao companyInstert  = new CompanyInsertDao(form);
 			companyInstert.excute();
-			return "redirect:/company-mangement";
+			return "redirect:/CompanyManagement";
 		}
 	}
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import com.asset.management.dao.UserDao;
 import com.asset.management.dao.UserSelectDao;
@@ -111,8 +112,8 @@ public class UserLoginController {
 					  session.setAttribute(Constants.SESSION_USER_ID,lstUser.get(0).getEmployment_CD()); 
 					  String url = UrlRedirection.REDIRECT+UrlRedirection.FEATURE_SYSTEM; mv.setViewName(url);
 					  session.setAttribute(Constants.SESSION_USER_CMPN_CD,lstUser.get(0).getCompany_cd()); 
-					  return mv; 
-							 
+					  mv.setViewName("redirect:organization");
+							 return mv;
 						
 					}
 					else 

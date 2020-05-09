@@ -38,100 +38,40 @@
 
 		<form action="/action_page.php">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-3">
 					<div class="form-group">
 						<label class="title_input">TÊN NGƯỜI DÙNG:</label> <input
 							type="text" class="form-control">
 					</div>
 				</div>
-				<div class="col-sm-6">
-					<div class="row">
-						<div class="col-sm-2">
-							<img style="width: 80px; height: 80px; border: 2px solid black"
-								src="./resources/images/ic_image.png" />
-						</div>
-						<div class="col-sm-10">
-							<label class="title_input">ẢNH ĐẠI DIỆN:</label>
-							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="customFile">
-								<label class="custom-file-label" for="customFile">Chọn
-									ảnh đại diện</label>
-							</div>
-						</div>
+
+				<div class="col-sm-3" style="padding-left: 0px;">
+					<div class="form-group">
+						<label class="title_input">MÃ NHÂN VIÊN</label> <input type="text"
+							class="form-control">
 					</div>
 				</div>
-			</div>
-			<div class="row">
-
-				<div class="col-sm-6">
-					<div class="row">
-						<div class="col-sm-6" style="padding-left: 0px;">
-							<div class="form-group">
-								<label class="title_input">MÃ NHÂN VIÊN</label> <input
-									type="text" class="form-control">
-							</div>
-						</div>
-						<div class="col-sm-6" style="padding-right: 0px;">
-							<div class="form-group">
-								<label class="title_input">SỐ ĐIỆN THOẠI</label> <input
-									type="text" class="form-control">
-							</div>
-						</div>
+				<div class="col-sm-3" style="padding-right: 0px;">
+					<div class="form-group">
+						<label class="title_input">SỐ ĐIỆN THOẠI</label> <input
+							type="text" class="form-control">
 					</div>
+				</div>
 
+				<div class="col-sm-3" style="padding-right: 0px;">
+					<div class="form-group">
+						<label class="title_input">MẬT KHẨU</label> <input type="password"
+							class="form-control">
+					</div>
 				</div>
 				<div class="col-sm-6">
-					<div class="row">
-						<div class="col-sm-6" style="padding-left: 0px;">
-							<div class="form-group">
-								<label class="title_input">EMAIL</label> <input type="text"
-									class="form-control">
-							</div>
-						</div>
-						<div class="col-sm-6" style="padding-right: 0px;">
-							<div class="form-group">
-								<label class="title_input">MẬT KHẨU</label> <input
-									type="password" class="form-control">
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="col-sm-6">
-					<div class="row">
-						<div class="col-sm-6" style="padding-left: 0px;">
-							<label class="title_input">PHÒNG BAN:</label> <select name="cars"
-								class="custom-select">
-								<option value="volvo">Cấp 1</option>
-								<option value="fiat">Cấp 2</option>
-								<option value="audi" selected>Cấp 3</option>
-							</select>
-						</div>
-						<div class="col-sm-6" style="padding-right: 0px;">
-							<label class="title_input">CHỨC VỤ</label> <select name="cars"
-								class="custom-select">
-								<option value="volvo">Cấp 1</option>
-								<option value="fiat">Cấp 2</option>
-								<option value="audi" selected>Cấp 3</option>
-							</select>
-						</div>
-					</div>
-
-				</div>
-				<div class="col-sm-6">
-					<label class="title_input">PHÂN QUYỀN:</label> <select name="cars"
-						class="custom-select">
-						<option value="volvo">Cấp 1</option>
-						<option value="fiat">Cấp 2</option>
-						<option value="audi" selected>Cấp 3</option>
-					</select>
 					<div class="manage-area">
 						<label class="title_input" style="margin-top: 10px">BẢNG
 							PHÂN QUYỀN</label>
 						<table id="table.data" class="table table-bordered table-data">
 							<thead>
 								<tr>
-									<th style="width: 20%">LOẠI NGHIỆM VỤ</th>
+									<th style="width: 20%">NGHIỆP VỤ</th>
 									<th style="width: 15%;">THÊM</th>
 									<th style="width: 15%;">SỬA</th>
 									<th style="width: 15%;">XÓA</th>

@@ -79,7 +79,7 @@
 								<div class="col-sm-6">
 									<div class="feauture">
 										<h4 class="level1">2 Active User</h4>
-										<a href="user-manage"><i class="fa fa-arrow-right"></i>Manage Users</a>
+										<a href="UserManagement"><i class="fa fa-arrow-right"></i>Manage Users</a>
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -117,7 +117,7 @@
 							<div class="col-sm-6">
 								<div class="feauture">
 									<h4 class="level1">2 Companies</h4>
-									<a href="company-mangement"><i class="fa fa-arrow-right"></i>Manage
+									<a href="CompanyManagement"><i class="fa fa-arrow-right"></i>Manage
 										Companies</a>
 								</div>
 							</div>
@@ -188,7 +188,7 @@
 						<div class="col-sm-6">
 							<div class="feauture">
 								<h4 class="level1">User Rights</h4>
-								<a href="#"><i class="fa fa-arrow-right"></i>Manage Rights</a>
+								<a href="UserRightManagement"><i class="fa fa-arrow-right"></i>Manage Rights</a>
 							</div>
 						</div>
 					</div>

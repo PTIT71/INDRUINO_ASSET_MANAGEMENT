@@ -116,7 +116,7 @@ textarea:focus, input:focus{
 	<div style="margin-top: 10px; padding: 0px; width: 95%; margin: auto">
 		<div class="row">
 			<div class="col-sm-12 general-setting shadow-sm p-3 mb-5 bg-gray">
-				<form action="AssetGeneralSearchInit" method="POST">
+				<form action="AssetManagementGeneral" method="POST">
 					<table class="table table-bordered table-search">
 						<thead>
 							<tr>
@@ -196,7 +196,7 @@ textarea:focus, input:focus{
 					<div class="title-feature">
 						<div class="text-right">
 							<button type="submit" style="border-radius: 0"
-								class="btn btn-primary">
+								class="btn btn-primary" name="search">
 								<i style="font-size: 24px" class="fa">&#xf067;</i>TÌM KIẾM
 							</button>
 							<button type="button" style="border-radius: 0"
@@ -216,8 +216,7 @@ textarea:focus, input:focus{
 								name="reportPDF" class="btn btn-primary">
 								<i style="font-size: 24px" class="fa">&#xf1c3;</i>XUẤT PDF
 							</button>
-							<button type="button" style="border-radius: 0" data-toggle="modal" data-target="#myModal"
-								onclick="GetSelected()" class="btn btn-primary">
+							<button type="submit" style="border-radius: 0" name="back" class="btn btn-primary">
 								<i style="font-size: 24px" class="fa">&#xf1c3;</i>QUAY LẠI
 							</button>
 						</div>

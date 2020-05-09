@@ -116,4 +116,13 @@ input[type="text"][readonly="readonly"]
 	text-transform: uppercase;
 	padding:0px;
 }
+.title-section
+{
+	background-color: #ffff4f;
+	color:red;
+	height: 30px;
+	line-height: 30px;
+	font-weight: 700;
+	padding-left: 10px;
+}
 

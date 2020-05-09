@@ -3,6 +3,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="com.asset.management.util.Common" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,7 +117,7 @@ textarea:focus, input:focus{
 	<div style="margin-top: 10px; padding: 0px; width: 95%; margin: auto">
 		<div class="row">
 			<div class="col-sm-12 general-setting shadow-sm p-3 mb-5 bg-gray">
-				<form action="AssetGeneralSearchInit" method="POST">
+				<form action="BorrowAssetManagement" method="POST">
 					<table class="table table-bordered table-search">
 						<thead>
 							<tr>
@@ -200,14 +201,9 @@ textarea:focus, input:focus{
 								class="btn btn-primary">
 								<i style="font-size: 24px" class="fa">&#xf067;</i>TÌM KIẾM
 							</button>
-							<button type="button" style="border-radius: 0"
-								class="btn btn-primary" onclick="ToLink('CreateAssetGeneral')">
+							<button type="submit" style="border-radius: 0"
+								class="btn btn-primary" name="create">
 								<i style="font-size: 24px" class="fa">&#xf067;</i>THÊM MỚI
-							</button>
-							<button type="button" style="border-radius: 0"
-								onclick="ToLink('ImportCSVAssetGenneral')"
-								class="btn btn-primary">
-								<i style="font-size: 24px" class="fa">&#xf1c3;</i>NHẬP EXCEL
 							</button>
 							<button type="submit" style="border-radius: 0" 
 								name="reportExcel" class="btn btn-primary">
@@ -225,22 +221,31 @@ textarea:focus, input:focus{
 					</div>
 				</form>
 				<p style="width:100%; text-align: center; color: red; font-weight: 700; margin-top:10px">${message}</p>
-				<c:if test="${listAssetSearch.size() > 0}">
+				
 				<p style="width:100%; text-align: right;  font-weight: 700; margin:0px" >Đơn vị: VNĐ</p>
 				<table id="table.data" style="margin-top:0px" class="table table-bordered table-data"
 					style="margin-top: 10px">
 					<thead>
 						<tr>
-							<th style="width:2%"></th>
-							<th style="width: 5%">STT</th>
-							<th style="width: 8%;">RFID</th>
-							<th style="width: 15%;">TÊN MÁY</th>
-							<th style="width: 14%;">MODEL</th>
-							<th style="width: 14%;">SỐ SERI</th>
-							<th style="width: 13%;">ĐƠN VỊ</th>
-							<th style="width: 10%;">MÃ KẾ TOÁN</th>
-							<th style="width: 10%;">NGÀY ĐẦU TƯ</th>
-							<th style="width: 9%;">ĐƠN GIÁ</th>
+							<th  colspan="1"></th>
+							<th  colspan="3">DOANH NGHIỆP CHO MƯỢN</th>
+							<th  colspan="4">THÔNG TIN TÀI SẢN</th>
+							<th  colspan="4">DOANH NGHIỆP MƯỢN</th>
+							
+						</tr>
+						<tr>
+							<th style="width:25px;">STT</th>
+							<th >DOANH NGHIỆP</th>
+							<th >ĐƠN VỊ</th>
+							<th >NGÀY CHO MƯỢN</th>
+							<th >TÊN TÀI SẢN</th>
+							<th >RFID</th>
+							<th >SERI</th>
+							<th >MODEL</th>
+							<th >ĐƠN VỊ MƯỢN</th>
+							<th >NGÀY SỬ DỤNG</th>
+							<th >LÝ DO MƯỢN</th>
+							<th >NGÀY TRẢ</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -291,7 +296,7 @@ textarea:focus, input:focus{
 
 
 				</div>
-			   </c:if>
+			  
 			</div>
 		</div>
 	</div>

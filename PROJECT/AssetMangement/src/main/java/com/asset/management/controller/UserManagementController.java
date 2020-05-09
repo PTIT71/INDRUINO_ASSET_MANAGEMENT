@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserManagementController {
 	
-	@RequestMapping(value = "user-manage")
+	@RequestMapping(value = "UserManagement")
 	public ModelAndView init(HttpServletRequest request,HttpServletResponse response) 
 	{
 		ModelAndView mv = new ModelAndView();
@@ -20,7 +20,7 @@ public class UserManagementController {
 		
 	
 	}
-	@RequestMapping(value = "user-insert-init")
+	@RequestMapping(value = "UserInsert")
 	public ModelAndView initInsert(HttpServletRequest request,HttpServletResponse response) 
 	{
 		ModelAndView mv = new ModelAndView();

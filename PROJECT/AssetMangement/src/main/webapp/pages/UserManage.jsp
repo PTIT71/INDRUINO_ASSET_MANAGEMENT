@@ -16,7 +16,7 @@
 	<div style="margin: 10px">
 		<div class="title-feature">
 			<div class="title-feature-sub">
-				<button type="submit" onclick="ToLink('user-insert-init')"
+				<button type="submit" onclick="ToLink('UserInsert')"
 					class="btn btn-primary">
 					<i style="font-size: 24px" class="fa">&#xf067;</i>THÊM MỚI
 				</button>

@@ -66,6 +66,7 @@ public class CompanySelectDao {
 			company.setCompany_cd(result.getString("COMPANY_CD"));
 			company.setCompany_name(result.getString("COMPANY_NAME"));
 			company.setCompany_address(result.getString("COMPANY_ADDRESS"));
+			company.setCompany_shortname(result.getString("SHRT_NAME"));
 			
 			lstCompany.add(company);
 		}
@@ -78,7 +79,15 @@ public class CompanySelectDao {
 		
 		sql.append("SELECT 	*	");
 		sql.append("FROM		");
-		sql.append(" 	COMPANY");
+		sql.append(" 	COMPANY ");
+		sql.append("WHERE 	 	1=1 ");
+		if(company !=null)
+		{
+			if(company.getCompany_cd() != null && company.getCompany_cd().trim().length()>0)
+			{
+				sql.append("AND COMPANY_CD = ").append("'" + company.getCompany_cd() + "'");
+			}
+		}
 		
 		return sql.toString();
 	}

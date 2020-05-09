@@ -5,6 +5,8 @@ public class CompanyModel {
 	private String company_cd;
 	private String company_name;
 	private String company_address;
+	private String company_shortname;
+	
 	
 	public CompanyModel() {
 		super();
@@ -32,6 +34,12 @@ public class CompanyModel {
 	}
 	public void setCompany_address(String company_address) {
 		this.company_address = company_address;
+	}
+	public String getCompany_shortname() {
+		return company_shortname;
+	}
+	public void setCompany_shortname(String company_shortname) {
+		this.company_shortname = company_shortname;
 	}
 
 }
