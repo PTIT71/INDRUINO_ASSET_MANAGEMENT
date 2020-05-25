@@ -115,7 +115,7 @@ input[type="text"]#rfid {
 			<input type="text" class="form-control" name="rfid" id="rfid">
 
 		</div>
-		<button type="submit" class="btn btn-primary "
+		<button type="button" class="btn btn-primary " onclick="ToLink('inventory')"
 			style="float: right; width: 120px;">QUAY LẠI</button>
 			<button type="button" class="btn btn-primary " onclick="ToLink('PDACreateNewInventory?session_id=${session_id}')"
 			style="float: right;  width: 120px;">BÁO MỚI</button>
@@ -129,16 +129,7 @@ input[type="text"]#rfid {
 			</div>
 		</c:if>
 	</div>
-	<div class="row" style="width:100%">
-		<div style="width: 100%; text-align: center; margin-top:10px;">
-			<form>
-				<button type="submit" class="btn btn-primary "
-					style=" width: 120px;">BÁO MỚI</button></br>
-				<button type="submit" class="btn btn-primary "
-					style=" width: 200px; margin-top:10px;">TIẾP TỤC KIỂM KÊ</button>
-			</form>
-		</div>
-	</div>
+	
 	<c:if test="${Asset != null}">
 		<table class="table table-bordered"
 			style="width: 90%; margin: auto; margin-top: 12px;">

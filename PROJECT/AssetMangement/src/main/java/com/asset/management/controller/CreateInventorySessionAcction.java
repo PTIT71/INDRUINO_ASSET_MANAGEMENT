@@ -40,6 +40,12 @@ public class CreateInventorySessionAcction {
 	{
 		request.setCharacterEncoding("UTF-8");
 		ModelAndView mv = new ModelAndView();
+		
+		if(request.getParameter("back") != null)
+		{
+			mv.setViewName("redirect:/InventorySessionInit");
+			return mv;
+		}
 		InventorySession inventorySession =new InventorySession();
 		inventorySession.setInventory_session_id(Common.getDateCurrent("YYYYMMDDHHMMSS"));
 		inventorySession.setInventory_session_name(request.getParameter("name"));

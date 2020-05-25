@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.asset.management.dao.CompanySelectDao;
@@ -16,7 +17,7 @@ import com.asset.management.model.CompanyModel;
 @Controller
 public class CompanyAjaxController {
 	
-	@RequestMapping(value = "/GetNameCompany", produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/GetNameCompany", method = RequestMethod.GET,  produces = "application/text; charset=utf-8")
 	@ResponseBody
 	public String getCompany(HttpServletRequest request, HttpServletResponse response)
 	{

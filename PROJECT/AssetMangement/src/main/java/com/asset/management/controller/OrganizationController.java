@@ -23,7 +23,9 @@ public class OrganizationController {
 		String NAME = "MÀN HÌNH QUẢN LÝ TỔ CHỨC";
 		ModelAndView mv = new ModelAndView();
 		mv.addObject(Common.TITLE_SCREEN, NAME);
-		CompanySelectDao companySelectDao = new CompanySelectDao();
+		CompanyModel cm = new CompanyModel();
+		cm.setCompany_delete("0");
+		CompanySelectDao companySelectDao = new CompanySelectDao(cm);
 		try {
 			List<CompanyModel> lstCompanyForms =  companySelectDao.excute();
 			if(lstCompanyForms.size()>0)

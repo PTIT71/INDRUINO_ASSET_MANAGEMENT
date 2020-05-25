@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
+import com.asset.management.dao.CompanySelectDao;
 import com.asset.management.dao.UserDao;
 import com.asset.management.dao.UserSelectDao;
 import com.asset.management.database.DatabaseConnection;
 import com.asset.management.helper.UploadFileHelper;
+import com.asset.management.model.CompanyModel;
 import com.asset.management.model.ExcelFile;
 import com.asset.management.model.UserModel;
 import com.asset.management.util.Common;
@@ -51,9 +55,34 @@ public class UserLoginController {
 		if(session_en.getAttribute("NAME")!=null && session_en.getAttribute("NAME").toString().trim().length()>0)
 		{
 			session_en.setAttribute("NAME",null);
+			session_en.setAttribute(Constants.SYSTEM_NAME,"ASSET MANAGEMENT" );
 			
 		}
-		mv.setViewName(LocationDirection.LOGIN_LOCATE);
+		
+			mv.setViewName(LocationDirection.LOGIN_LOCATE);
+		
+	
+		request.getSession().setAttribute(Constants.SUB_SYSTEM_NAME,null);
+		return mv;
+	}
+	
+	@RequestMapping("/pdalogin")
+	public ModelAndView initPDA(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		//Kiểm tra session có đang lưu trữ dữ liệu ngư�?i dung hay không.
+		//Nếu có li�?n xóa đi. Nhầm đảm bảo tính bảo mật ngư�?i dùng.
+		HttpSession session_en=request.getSession();  
+		if(session_en.getAttribute("NAME")!=null && session_en.getAttribute("NAME").toString().trim().length()>0)
+		{
+			session_en.setAttribute("NAME",null);
+			session_en.setAttribute(Constants.SYSTEM_NAME,"ASSET MANAGEMENT" );
+			
+		}
+		
+			mv.setViewName(LocationDirection.LOGIN_LOCATE_PAD);
+		
+	
+		request.getSession().setAttribute(Constants.SUB_SYSTEM_NAME,null);
 		return mv;
 	}
 	
@@ -112,6 +141,15 @@ public class UserLoginController {
 					  session.setAttribute(Constants.SESSION_USER_ID,lstUser.get(0).getEmployment_CD()); 
 					  String url = UrlRedirection.REDIRECT+UrlRedirection.FEATURE_SYSTEM; mv.setViewName(url);
 					  session.setAttribute(Constants.SESSION_USER_CMPN_CD,lstUser.get(0).getCompany_cd()); 
+					  CompanyModel cm = new CompanyModel();
+					  cm.setCompany_cd(lstUser.get(0).getCompany_cd());
+					  CompanySelectDao cmsd = new CompanySelectDao(cm);
+					  List<CompanyModel> lst = cmsd.excute();
+					  HttpSession session_en=request.getSession();  
+					  session_en.setAttribute(Constants.SYSTEM_NAME,lst.get(0).getCompany_name() );
+					  
+					  
+					  
 					  mv.setViewName("redirect:organization");
 							 return mv;
 						

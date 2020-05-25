@@ -60,7 +60,7 @@ public class CompanyForm {
 		this.phone = request.getParameter("phone").trim();
 		this.email = request.getParameter("email").trim();
 		this.website = request.getParameter("website").trim();
-		this.level = request.getParameter("level").trim();
+	//	this.level = request.getParameter("level").trim();
 		this.desciption = request.getParameter("description").trim();
 		this.shortName = request.getParameter("shortName").trim();
 		HttpSession session_en=request.getSession();  

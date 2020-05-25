@@ -1,4 +1,9 @@
-
+function deleteRow(table, index) {
+	 document.getElementById(table).deleteRow(index);
+}
+function openDialogue(url) {
+	  window.open(url, "_blank", "scrollbars=yes,width=600,height=700");
+	}
 function ToLink(url)
 {
 	window.location.href=url;

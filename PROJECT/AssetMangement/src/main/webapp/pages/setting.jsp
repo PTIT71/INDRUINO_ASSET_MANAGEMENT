@@ -59,10 +59,8 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<ul class="nav nav-pills flex-column">
-					<li class="nav-item"><a class="nav-link active" href="#">General
-							Setting</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Asset
-							Setting</a></li>
+					<li class="nav-item"><a class="nav-link active" href="#">QUẢN TRỊ DOANH NGHIỆP</a></li>
+					<li class="nav-item"><a class="nav-link" href="SystemSetting">QUẢN TRỊ HỆ THỐNG</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Document</a>
 					</li>
 				</ul>

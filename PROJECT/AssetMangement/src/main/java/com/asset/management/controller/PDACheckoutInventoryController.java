@@ -41,6 +41,7 @@ import com.asset.management.util.Common;
 import com.asset.management.util.CommonSQL;
 import com.asset.management.util.Constants;
 import com.asset.management.util.LocationDirection;
+import com.asset.management.util.SystemControl;
 import com.asset.management.util.UrlRedirection;
 
 @Controller
@@ -160,6 +161,8 @@ public class PDACheckoutInventoryController {
 		InventoryChecking inventoryChecking = new InventoryChecking();
 		inventoryChecking.setAsset_Rfid(rfid);
 		inventoryChecking.setInventorySessionCD(inventory_session_id);
+		SystemControl sys = new SystemControl(request);
+		inventoryChecking.setCompany_cd(sys.CompanyCDCurrent);
 		AssetGeneralSelectDao assetGeneralSelectDao = new AssetGeneralSelectDao(assetForm);
 		
 		try {

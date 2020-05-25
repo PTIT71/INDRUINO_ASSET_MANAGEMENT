@@ -1,5 +1,7 @@
 package com.asset.management.model;
 
+
+
 public class CheckingAssetNew {
 	public String getAsset_id() {
 		return asset_id;
@@ -66,6 +68,13 @@ public class CheckingAssetNew {
 	private String dateCreate;
 	private String user;
 	private String status;
+	private String cmpn_cd;
+	public String getCmpn_cd() {
+		return cmpn_cd;
+	}
+	public void setCmpn_cd(String cmpn_cd) {
+		this.cmpn_cd = cmpn_cd;
+	}
 	public String getStatus() {
 		return status;
 	}
@@ -79,6 +88,7 @@ public class CheckingAssetNew {
 	}
 	public void setStatus_name(String status_name) {
 		this.status_name = status_name;
+
 	}
 	
 	

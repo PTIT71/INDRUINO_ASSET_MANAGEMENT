@@ -109,6 +109,10 @@
 textarea:focus, input:focus{
     outline: none;
 }
+
+input[type="text"] {
+	background-color: #FFFFFF !important;
+}
 </style>
 <body onload="Pagination()">
 	<jsp:include page="/common/header.jsp"></jsp:include>

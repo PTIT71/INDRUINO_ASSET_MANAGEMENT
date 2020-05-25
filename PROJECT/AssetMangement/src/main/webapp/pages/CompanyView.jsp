@@ -60,7 +60,7 @@
 						<div class="col-sm-2">
 							<img id="logoimage"
 								style="width: 80px; height: 80px; border: 2px solid black"
-								src="../resources/images/${form.getFile_name()}" />
+								src="${form.getFile_name()}" />
 						</div>
 						<div class="col-sm-10">
 							<label class="title_input">LOGO CÔNG TY:</label>
@@ -189,6 +189,7 @@ $(document).ready(function(){
 				success: function(result)
 				{
 					//$('#logoimage').href(result);
+					alert("dssds");
 					document.getElementById("logoimage").src = result;
 				}
 			

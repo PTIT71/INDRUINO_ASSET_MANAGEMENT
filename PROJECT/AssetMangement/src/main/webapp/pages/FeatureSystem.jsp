@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="java.awt.Dimension" %>
+	<%@ page import="java.awt.Toolkit" %>
+	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +46,10 @@
 {
 	background-color: orange;
 }
+.btn-logout
+{
+	background-color: darkred;
+}
 </style>
 </head>
 <body>
@@ -51,26 +59,41 @@
 		 <table class="table  table-feature">
     <tbody>
       <tr>
+      <% 
+      		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+      		double height = screenSize.getHeight();
+      		double width = screenSize.getWidth();
+      		System.out.print("kich thuoc: " + width + " " + height);
+      		
+      %>
+      <% if(width > 600 && height >600) { %>
         <td><a class="btn  btn-feature" href="AssetManagementGeneral">QUẢN LÝ TÀI SẢN</a></td>
         <td><a class="btn  btn-feature" href="BorrowAssetManagement">ĐĂNG KÝ MƯỢN</a></td>
         <td></td>
-        <td><a class="btn  btn-feature btn-admin" href="admin-manager">QUẢN TRỊ HỆ THỐNG</a></td>
+        <td><a class="btn  btn-feature btn-admin" href="CompanySettingManagement">QUẢN TRỊ DOANH NGHIỆP</a></td>
       </tr>
+      <%} %>
       <tr>
+       <% if(width > 600 && height >600) { %>
         <td><a class="btn  btn-feature" href="InventorySessionInit">QUẢN LÝ KIỂM KÊ TÀI SẢN</a></td>
-        <td><a class="btn  btn-feature" href="#">ĐĂNG KÝ TRẢ</a></td>
+        <td><a class="btn  btn-feature" href="LoanAssetManagement">ĐĂNG KÝ CHO MƯỢN</a></td>
         <td></td>
-        <td></td>
+        <td><a class="btn  btn-feature btn-logout" href="/AssetMangement/">ĐĂNG XUẤT</a></td>
       </tr>
+       <%} %>
       <tr>
         <td><a class="btn  btn-feature" href="inventory">KIỂM KÊ TÀI SẢN</a></td>
-        <td><a class="btn  btn-feature" href="#">BÁO CÁO SỰ CỐ</a></td>
+          <% if(width > 600 && height >600) { %>
+        <td><a class="btn  btn-feature" href="RentAssetManagement">ĐĂNG KÝ THUÊ TÀI SẢN</a></td>
         <td></td>
         <td></td>
+         <%} %>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td><a class="btn  btn-feature" href="AssetLiquidation/">THANH LÝ TÀI SẢN</a></td>
+         <% if(width > 600 && height >600) { %>
+        <td><a class="btn  btn-feature" href="/AssetMangement/">BÁO CÁO SỰ CỐ</a></td>
+         <%} %>
         <td></td>
         <td></td>
       </tr>

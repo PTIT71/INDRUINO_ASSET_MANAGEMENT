@@ -60,7 +60,7 @@
 						<div class="col-sm-2">
 							<img id="logoimage"
 								style="width: 80px; height: 80px; border: 2px solid black"
-								src="E:\2020\LUANVANTOTNGHIEP\INDRUINO_ASSET_MANAGEMENT\PROJECT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\AssetMangement\images\1586698059892.png" />
+								src="./resources/images/ic_image.png" />
 						</div>
 						<div class="col-sm-5">
 							<label class="title_input">LOGO CÔNG TY:</label>
@@ -115,34 +115,19 @@
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<label class="title_input">CẤP DOANH NGHIỆP:</label> <select
-						name="level" class="custom-select">
-						<c:if test="${lstCompanyLevel.size() > 0}">
-							<c:forEach var="item" items="${lstCompanyLevel}">
-								<option value="${item.getCmp_level_cd()}">${item.getCmp_level_name()}</option>
-							</c:forEach>
-						</c:if>
-					</select>
+					<label class="title_input">CẤP DOANH NGHIỆP:</label> <button type="button" class="select" onclick="return openDialogue('GetListCompanyTable')"><i class="fas fa-list-alt"></i></button>
 					<div class="manage-area">
 						<label class="title_input" style="margin-top: 10px">DANH
 							SÁCH CÔNG TY CẤP DƯỚI</label>
-						<table id="table.data" class="table table-bordered table-data">
+						<table id="table_company" class="table table-bordered table-data">
 							<thead>
 								<tr>
-									<th style="width: 2%"></th>
-									<th style="width: 20%">TÊN CÔNG TY</th>
-									<th style="width: 78%;">ĐỊA CHỈ</th>
+									<th style="width: 20%">MÃ CÔNG TY</th>
+									<th style="width: 70%;">TÊN CÔNG TY</th>
+									<th style="width: 10%"></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><input name="checkboxrow"
-										onclick="return GetSelected()" onchange="GetSelected()"
-										type="checkbox" class="form-check-input"
-										style="margin: 0px; padding: 0px; margin-top: 7px" value=""></td>
-									<td style="text-align: center;">${company.getCompany_name()}</td>
-									<td>${company.getCompany_address()}</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -161,6 +146,10 @@
 	</s:form>
 </body>
 <script type="text/javascript">
+function deleteRow(index) {
+	 document.getElementById("table_company").deleteRow(index);
+	
+}
 	$(document).ready(function() {
 
 		$("#btnabc").click(function(event) {

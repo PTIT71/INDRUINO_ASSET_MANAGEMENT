@@ -38,24 +38,9 @@ public class InventoryCheckingSelectDao {
 			assetTable.setInventorySessionCD(result.getString("INVENTORY_CHECK"));
 			assetTable.setAsset_Name(result.getString("ASSET_NAME"));
 			assetTable.setDepartment(result.getString("ASSET_DEPARTMENT"));
-			assetTable.setInventory_Date(result.getString("INVENTORY_DATE"));
-			assetTable.setUserName(result.getString("NAME"));
-			assetTable.setUserChecking(result.getString("USER_CHECK"));
+			assetTable.setInventory_Date(result.getString("NGAYCAPNHAT"));
 			assetTable.setStatus(result.getString("STATUS"));
-			if(result.getString("STATUS").trim().equals("1"))
-			{
-				assetTable.setStatus_name("Kiểm kê thành công");
-			}
-			if(result.getString("STATUS").trim().equals("2"))
-			{
-				assetTable.setStatus_name("Báo mới");
-			}
-			if(result.getString("STATUS").trim().equals("3"))
-			{
-				assetTable.setStatus_name("Không tìm thấy");
-			}
-			
-			
+			assetTable.setHientrang(result.getString("HIENTRANG"));
 			lstChecking.add(assetTable);
 		}
 		
@@ -88,43 +73,65 @@ public class InventoryCheckingSelectDao {
 	public String getSQLAssetManagementTable()
 	{
 		StringBuilder sql = new StringBuilder();
-		sql.append(" SELECT *");
-		sql.append(" FROM");
-		sql.append(" 	ASSETS_GENERAL  ASG");
-		sql.append(" INNER JOIN ");
-		sql.append(" ( ");
-		sql.append(   getSql());
-		sql.append(" ) INV");
-		sql.append(" ON ");
-		sql.append(" ASG.ASSET_RFID = INV.ASSET_RFID ");
-		sql.append(" INNER JOIN ");
-		sql.append(" USER_SYSTEM URS ");
-		sql.append(" ON ");
-		sql.append(" INV.USER_CHECK = URS.EMPLOYEE_CD ");
-		
-		//return sql.toString();
-		return "  " + 
-				"select ISNULL(INVENTORY_CHECK, 'KKDK20200102') AS INVENTORY_CHECK,  " + 
-				"ISNULL(ASSET_NAME,'-') AS ASSET_NAME,  " + 
-				"ISNULL(ASSET_DEPARTMENT,'-') AS ASSET_DEPARTMENT,  " + 
-				"ISNULL(INVENTORY_DATE,'-') AS INVENTORY_DATE,  " + 
-				"ISNULL(NAME,'-') AS NAME,  " + 
-				"ISNULL(USER_CHECK,'-') AS USER_CHECK,  " + 
-				"ISNULL(STATUS, '3') AS STATUS FROM   " + 
-				"  " + 
-				"(SELECT INVENTORY_CHECK,ASSET_NAME,ASSET_DEPARTMENT,INVENTORY_DATE,NAME,USER_CHECK, STATUS  " + 
-				"FROM ASSETS_GENERAL ASG  " + 
-				"LEFT JOIN  " + 
-				" INVENTORY INV  " + 
-				"  ON  INV.ASSET_RFID = ASG.ASSET_RFID  " + 
-				"     AND INVENTORY_CHECK = 'KKDK20200102'  " + 
-				"LEFT JOIN USER_SYSTEM USR ON USR.EMPLOYEE_CD = INV.USER_CHECK  " + 
-				"UNION ALL  " + 
-				"SELECT CHECKING_CD AS INVENTORY_CHECK, ASSET_NAME AS ASSET_NAME,CAN.DEPARTMENT AS ASSET_DEPARTMENT, DATE_CREATE AS INVENTORY_DATE,NAME,USER_INSERT AS USER_CHECK, STATUS FROM   " + 
-				"CHECKING_ASSET_NEW CAN  " + 
-				"LEFT JOIN USER_SYSTEM USR ON USR.EMPLOYEE_CD = CAN.USER_INSERT  " + 
-				") AV  " + 
-				"ORDER BY ASSET_DEPARTMENT" ;
+		sql.append("SELECT * FROM (  ");
+		sql.append("SELECT TBL1.*,  ");
+		sql.append("		FORMAT(GETDATE(),'yyyy/MM/dd') AS NGAYCAPNHAT, ");
+		sql.append("		ISNULL(IV.STATUS, 4) AS STATUS,ISNULL(INVENTORY_CHECK, '"+InventoryChecking.getInventorySessionCD()+"') AS INVENTORY_CHECK ");
+		sql.append("FROM ");
+		sql.append("( ");
+		sql.append("SELECT  ");
+			sql.append("	ASSET_RFID, ");
+			sql.append("	ASSET_NAME, ");
+			sql.append("	ASSET_DEPARTMENT, ");
+			sql.append("	N'BIÊN CHẾ' as  HIENTRANG ");
+		sql.append("FROM ASSETS_GENERAL ");
+		sql.append("WHERE CMPN_CD =  ").append("'"+InventoryChecking.getCompany_cd()+"' ");
+		sql.append("UNION  ");
+		sql.append("SELECT  ");
+			sql.append("	BA.ASSET_RFID AS ASSET_RFID ");
+			sql.append("   ,ASSET_NAME  ");
+			sql.append("   ,BORROW_DEPT  as ASSET_DEPARTMENT, ");
+		sql.append("	   N'MƯỢN' as  HIENTRANG ");
+		sql.append("FROM  ");
+		sql.append("BORROW_ASSET BA, ASSETS_GENERAL AG ");
+		sql.append("WHERE BA.ASSET_RFID = AG.ASSET_RFID ");
+		sql.append("AND BA.BORROW_CMPN_CD =   ").append("'"+InventoryChecking.getCompany_cd()+"' ");
+		sql.append("UNION ");
+		sql.append("SELECT  ");
+			   sql.append(" RA.ASSET_RFID AS ASSET_RFID ");
+			   sql.append(",ASSET_NAME  ");
+			   sql.append(",DEP.DEPARTMENT_NAME  as ASSET_DEPARTMENT, ");
+			  sql.append(" N'THUÊ' as  HIENTRANG ");
+		sql.append("FROM RENT_ASSET RA, DEPRATMENT DEP ");
+		sql.append("WHERE DEP.DEPT_CD = DEPARTMENT_CD ");
+		sql.append("AND RA.CMPN_CD = "+"'"+InventoryChecking.getCompany_cd()+"') TBL1 ");
+		sql.append("LEFT JOIN  ");
+		sql.append("INVENTORY IV ");
+		sql.append("ON IV.ASSET_RFID = TBL1.ASSET_RFID ");
+		sql.append("AND IV.INVENTORY_CHECK = "+"'"+InventoryChecking.getInventorySessionCD()+"' ");
+		sql.append("UNION ");
+		sql.append("SELECT  ");
+				sql.append("ASSET_RFID, ");
+				sql.append("ASSET_NAME, ");
+				sql.append("DEPARTMENT, ");
+				sql.append("N'BÁO MỚI' as  HIENTRANG, ");
+				sql.append("FORMAT(GETDATE(),'yyyy/MM/dd') AS NGAYCAPNHAT, ");
+				sql.append("STATUS,ISNULL(CHECKING_CD, '"+InventoryChecking.getInventorySessionCD()+"') AS INVENTORY_CHECK ");
+		sql.append("FROM CHECKING_ASSET_NEW CAN ");
+		sql.append("WHERE CAN.CMPN_CD =  "+"'"+InventoryChecking.getCompany_cd()+"'");
+		sql.append("AND CAN.CHECKING_CD = "+"'"+InventoryChecking.getInventorySessionCD()+"' ");
+		sql.append(" ) AS TBL2 ");
+		sql.append(" WHERE 1=1 ");
+		if(InventoryChecking.getAsset_name()!=null && InventoryChecking.getAsset_name().trim().length()>0)
+		{
+			sql.append(" AND ASSET_NAME = '" + InventoryChecking.getAsset_name()+"'");
+		}
+		if(InventoryChecking.getDepartment()!=null && InventoryChecking.getDepartment().trim().length()>0)
+		{
+			sql.append(" AND ASSET_DEPARTMENT = '" + InventoryChecking.getDepartment()+"'");
+		}
+	return sql.toString();
+	
 				
 	}
 	

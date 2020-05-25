@@ -17,5 +17,7 @@
 	href="./resources/css/common.css">
 	<link rel="stylesheet"
 	href="./resources/css/default.css">
+	<link rel="stylesheet"
+	href="./resources/css/tabledata.css">
 
     

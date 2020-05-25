@@ -18,16 +18,17 @@
 <body>
 	<jsp:include page="/common/header.jsp"></jsp:include>
 	<jsp:include page="/common/subHeaderEmpty.jsp"></jsp:include>
+	<form action="UserRegister" method="POST">
 	<div style="margin: 10px">
 		<div class="title-feature">
 			<div class="title-feature-sub">
-				<button type="submit" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary" name="save">
 					<i class="fas fa-save"></i> LƯU TRẠNG THÁI
 				</button>
 
 			</div>
 			<div class="text-right">
-				<button type="submit" class="btn btn-primary text-right">
+				<button type="submit" class="btn btn-primary text-right" name="back">
 					<i class="fas fa-undo"></i> QUAY TRỞ LẠI
 				</button>
 			</div>
@@ -35,32 +36,48 @@
 		</div>
 	</div>
 	<div style="margin-left: 10px; margin-right: 10px">
+		<div>
+			<c:if test="${message != null}">
+				<div class="alert alert-danger message">
+					<strong>${message}</strong>
+				</div>
+			</c:if>
+		</div>
+		<div>
+			<c:if test="${NOTIFICATION != null}">
+				<div class="alert alert-success message">
+					<strong>${NOTIFICATION}</strong>
+				</div>
+			</c:if>
+		</div>
+	</div>
+	<div style="margin-left: 10px; margin-right: 10px">
 
-		<form action="/action_page.php">
+	
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label class="title_input">TÊN NGƯỜI DÙNG:</label> <input
+						<label class="title_input">TÊN NGƯỜI DÙNG:</label> <input name="employee_name"
 							type="text" class="form-control">
 					</div>
 				</div>
 
 				<div class="col-sm-3" style="padding-left: 0px;">
 					<div class="form-group">
-						<label class="title_input">MÃ NHÂN VIÊN</label> <input type="text"
+						<label class="title_input">MÃ NHÂN VIÊN</label> <input type="text" name="employee_code"
 							class="form-control">
 					</div>
 				</div>
 				<div class="col-sm-3" style="padding-right: 0px;">
 					<div class="form-group">
-						<label class="title_input">SỐ ĐIỆN THOẠI</label> <input
+						<label class="title_input">SỐ ĐIỆN THOẠI</label> <input name="employee_phone"
 							type="text" class="form-control">
 					</div>
 				</div>
 
 				<div class="col-sm-3" style="padding-right: 0px;">
 					<div class="form-group">
-						<label class="title_input">MẬT KHẨU</label> <input type="password"
+						<label class="title_input">MẬT KHẨU</label> <input type="password" name="employee_pass"
 							class="form-control">
 					</div>
 				</div>
@@ -108,8 +125,8 @@
 					</div>
 				</div>
 			</div>
-		</form>
 	</div>
+	</form>
 </body>
 <script type="text/javascript">
 	//hàm chọn dữ liệu

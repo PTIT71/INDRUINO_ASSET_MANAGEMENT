@@ -17,6 +17,7 @@ import com.asset.management.form.AssetGeneralFormSearch;
 import com.asset.management.model.AssetObject;
 import com.asset.management.model.ExcelFile;
 import com.asset.management.util.Common;
+import com.asset.management.util.Constants;
 
 @Controller
 @RequestMapping("/AssetGeneralView")
@@ -48,6 +49,7 @@ public class AssetGeneralViewController {
 					else
 					{
 						mv.addObject("asset",lst.get(0));
+						//mv.addObject(Common.MESSAGE_ERROR,"TÌM ĐƯỢC");
 					}
 				}
 			} catch (SQLException e) {

@@ -6,8 +6,21 @@ public class CompanyModel {
 	private String company_name;
 	private String company_address;
 	private String company_shortname;
+	public String getCompany_file_image() {
+		return company_file_image;
+	}
+	public void setCompany_file_image(String company_file_image) {
+		this.company_file_image = company_file_image;
+	}
+	private String company_delete;
+	private String company_file_image;
 	
-	
+	public String getCompany_delete() {
+		return company_delete;
+	}
+	public void setCompany_delete(String company_delete) {
+		this.company_delete = company_delete;
+	}
 	public CompanyModel() {
 		super();
 	}

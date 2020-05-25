@@ -22,8 +22,7 @@
 					<i style="font-size: 24px" class="fa">&#xf067;</i>LƯU PHIÊN
 				</button>
 				<button type="submit" style="border-radius: 0"
-					onclick="window.location.href='company-insert-init'"
-					class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+					class="btn btn-primary" name="back">
 					<i style="font-size: 24px" class="fa">&#xf067;</i>QUAY TRỞ LẠI
 				</button>
 			</div>
@@ -154,11 +153,12 @@
 																var idCount = count-1;
 																  var x = document.createElement("INPUT");
 																  x.setAttribute("type", "text");
+																  x.setAttribute("style", "border:0px;");
 																  x.setAttribute("value", res[0]);
 																  x.setAttribute("name", "item.emloyee[" + idCount + "]");
 																cell1.appendChild(x);
 																cell2.innerHTML = res[1];
-																cell3.innerHTML = res[2];
+																cell3.innerHTML ="";
 																cell4.innerHTML = "";
 
 																document

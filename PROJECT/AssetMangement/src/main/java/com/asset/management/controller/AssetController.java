@@ -40,6 +40,7 @@ public class AssetController {
 	{
 		AssetGeneralFormSearch form = new AssetGeneralFormSearch(request);
 		modelMap.addAttribute("TittleScreen","MÀN HÌNH QUẢN LÝ TÀI SẢN CHUNG");
+		SystemControl systemControl = new SystemControl(request);
 		AssetGeneralSelectDao AssetSelectDao = new AssetGeneralSelectDao(null);
 		modelMap.addAttribute("listAssets",AssetSelectDao.excute() );
 		AssetGeneralSelectDao AssetSelectDaoSearch = new AssetGeneralSelectDao(form);
@@ -50,6 +51,41 @@ public class AssetController {
 	
 	@RequestMapping(params = "search", method = RequestMethod.POST)
 	public ModelAndView search(ModelMap modelMap, HttpServletRequest request) throws SQLException 
+	{
+		ModelAndView mv = new ModelAndView();
+		
+		AssetGeneralFormSearch form = new AssetGeneralFormSearch(request);
+		mv.addObject("TittleScreen","MÀN HÌNH QUẢN LÝ TÀI SẢN CHUNG");
+		AssetGeneralSelectDao AssetSelectDao = new AssetGeneralSelectDao(null);
+		mv.addObject("listAssets",AssetSelectDao.excute() );
+		AssetGeneralSelectDao AssetSelectDaoSearch = new AssetGeneralSelectDao(form);
+		SystemControl systemControl = new SystemControl(request);
+		List<AssetObject> lstAsset = AssetSelectDaoSearch.excute();
+		mv.addObject("listAssetSearch", lstAsset);
+		mv.addObject("formSearch",form);
+		if(lstAsset ==null || lstAsset.size()==0)
+		{
+			modelMap.addAttribute("message","Không tìm thấy dữ liệu yêu cầu<br>Xin thay đổi điều kiện tìm kiếm");
+		}
+		else
+		{
+			if(request.getParameter("reportExcel")!=null)
+			{
+				System.out.println("vô rồi nè");
+				return new ModelAndView(new ExcelAssetGeneralListReportView(), "userList", lstAsset);
+			}
+			if(request.getParameter("reportPDF")!=null)
+			{
+				System.out.println("vô rồi nè");
+				return new ModelAndView(new PdfUserListReportView(), "userList", lstAsset);
+			}
+		}
+		mv.setViewName("pages/AssetManagementGeneral.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(params = "reportExcel", method = RequestMethod.POST)
+	public ModelAndView excel(ModelMap modelMap, HttpServletRequest request) throws SQLException 
 	{
 		ModelAndView mv = new ModelAndView();
 		AssetGeneralFormSearch form = new AssetGeneralFormSearch(request);
@@ -63,7 +99,41 @@ public class AssetController {
 		mv.addObject("formSearch",form);
 		if(lstAsset ==null || lstAsset.size()==0)
 		{
-			modelMap.addAttribute("message","Không tìm thấy dữ liệu yêu cầu<br>Xin thay đổi đi�?u kiện tìm kiếm");
+			modelMap.addAttribute("message","Không tìm thấy dữ liệu yêu cầu<br>Xin thay đổi điều kiện tìm kiếm");
+		}
+		else
+		{
+			if(request.getParameter("reportExcel")!=null)
+			{
+				System.out.println("vô rồi nè");
+				return new ModelAndView(new ExcelAssetGeneralListReportView(), "userList", lstAsset);
+			}
+			if(request.getParameter("reportPDF")!=null)
+			{
+				System.out.println("vô rồi nè");
+				return new ModelAndView(new PdfUserListReportView(), "userList", lstAsset);
+			}
+		}
+		mv.setViewName("pages/AssetManagementGeneral.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(params = "reportPDF", method = RequestMethod.POST)
+	public ModelAndView PDF(ModelMap modelMap, HttpServletRequest request) throws SQLException 
+	{
+		ModelAndView mv = new ModelAndView();
+		AssetGeneralFormSearch form = new AssetGeneralFormSearch(request);
+		mv.addObject("TittleScreen","MÀN HÌNH QUẢN LÝ TÀI SẢN CHUNG");
+		AssetGeneralSelectDao AssetSelectDao = new AssetGeneralSelectDao(null);
+		mv.addObject("listAssets",AssetSelectDao.excute() );
+		AssetGeneralSelectDao AssetSelectDaoSearch = new AssetGeneralSelectDao(form);
+		SystemControl systemControl = new SystemControl(request);
+		List<AssetObject> lstAsset = AssetSelectDaoSearch.excute();
+		mv.addObject("listAssetSearch", lstAsset);
+		mv.addObject("formSearch",form);
+		if(lstAsset ==null || lstAsset.size()==0)
+		{
+			modelMap.addAttribute("message","Không tìm thấy dữ liệu yêu cầu<br>Xin thay đổi điều kiện tìm kiếm");
 		}
 		else
 		{
@@ -83,61 +153,14 @@ public class AssetController {
 	}
 	
 	@RequestMapping(params = "back", method = RequestMethod.POST)
-	public ModelAndView back()
+	public ModelAndView back(HttpServletRequest request)
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName(ViewNameCommon.goToRedirect("feature"));
+		SystemControl syss = new SystemControl(request);
+		mv.setViewName("redirect:/feature?cmpn=" + syss.CompanyCDCurrent);
+			
 		return mv;
 	}
-	
-//	@RequestMapping(value="importexcel", method = RequestMethod.POST)
-//	public String importexcel(@ModelAttribute(value="excelFile") ExcelFile excelFile,  ModelMap modelMap, HttpServletRequest request) 
-//	{
-//			String message_error = "";
-//			File file = UploadFileHelper.simpleUpload(excelFile.getFile(), request, true, "images",request.getSession());
-//			System.out.println(file.getPath());
-//			ExcelHelper eh = new ExcelHelper(file.getAbsolutePath());
-//			List<AssetObject> lstAssetObject = null;
-//			try {
-//				lstAssetObject = eh.readData(AssetObject.class.getName(),"Sheet1",3,1);
-//			} catch (Exception e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//			if(lstAssetObject.size() > 0)
-//			{
-//				AssetGeneralInsertDao AssetDao = new AssetGeneralInsertDao();
-//				String id = Common.getDateCurrent("YYYYMMDDHHMMSS");
-//				String Company_CD = (String) request.getSession().getAttribute(Constants.SESSION_USER_CMPN_CD);
-//				for(int i=0;i<lstAssetObject.size();i++)
-//				{
-//					try
-//					{
-//						lstAssetObject.get(i).setId(id);
-//						lstAssetObject.get(i).setCompany_CD(Company_CD);
-//						AssetDao.excuteData(lstAssetObject.get(i));
-//					}
-//					catch (Exception e) 
-//					{
-//						// TODO: handle exception
-//						e.printStackTrace();
-//						System.out.println("Lỗi Dòng: " + (i+1));
-//						int row_error = i+1;
-//						message_error += row_error +",";
-//					}
-//				}
-//				
-//				
-//				
-//				
-//			}
-//			
-//			//AssetGeneralSelectDao AssetSelectDao = new AssetGeneralSelectDao();
-//			//modelMap.addAttribute("listAssets",AssetSelectDao.excute() );
-//		
-//		modelMap.addAttribute(Common.MESSAGE_ERROR, message_error);
-//		return "/pages/AssetManagementGeneral.jsp";
-//	}
 }
 
 	

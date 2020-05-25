@@ -80,7 +80,7 @@ img {
 			<div
 				class="menu-general-manager-item  zoom shadow-sm p-3 mb-5 bg-white rounded">
 				<a href="feature?cmpn=${p.getCompany_cd()}"> <img alt="discuss" style="width: 100%"
-					src="./resources/images/ic_viettien.png">
+					src="${p.getCompany_file_image()}">
 					<p style="font-size: 18px; text-align: center; font-weight: 700">${p.getCompany_shortname()}</p>
 				</a>
 			</div>

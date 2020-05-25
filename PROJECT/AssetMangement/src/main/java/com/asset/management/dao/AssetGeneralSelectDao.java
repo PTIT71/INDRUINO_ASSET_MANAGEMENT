@@ -73,7 +73,7 @@ public class AssetGeneralSelectDao {
 		sql.append(" 	ASSETS_GENERAL");
 		sql.append(" WHERE");
 		sql.append(" 	DELETE_FG = '0'");
-		sql.append(" 	AND CMPN_CD = ").append("'" + SystemControl.CompanyCD+"'");
+		sql.append(" 	AND CMPN_CD = ").append("'" + SystemControl.CompanyCDCurrent+"'");
 		if(form != null)
 		{
 			if(form.getRFID()!=null && form.getRFID().trim().length()>0)

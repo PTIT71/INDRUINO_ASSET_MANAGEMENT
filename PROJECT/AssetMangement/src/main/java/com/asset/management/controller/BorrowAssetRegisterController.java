@@ -1,8 +1,10 @@
 package com.asset.management.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -10,10 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.asset.management.dao.AssetGeneralSelectDao;
+import com.asset.management.dao.BorrowAssetInsertDao;
 import com.asset.management.dao.CompanySelectDao;
+import com.asset.management.form.AssetGeneralFormSearch;
+import com.asset.management.model.AssetObject;
+import com.asset.management.model.BorrowAssetModel;
 import com.asset.management.model.CompanyModel;
 import com.asset.management.util.Common;
+import com.asset.management.util.Constants;
 import com.asset.management.util.SessionCommon;
+import com.asset.management.util.SystemControl;
 import com.sun.org.apache.regexp.internal.recompile;
 @Controller
 @RequestMapping("/BorrowAssetRegister")
@@ -64,10 +73,74 @@ public class BorrowAssetRegisterController {
 	}
 	
 	@RequestMapping(params = "save", method = RequestMethod.POST)
-	public ModelAndView save()
+	public ModelAndView save(HttpServletRequest request) throws UnsupportedEncodingException
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject(Common.TITLE_SCREEN, TITLE);
+		
+		request.setCharacterEncoding("UTF8");
+		
+		BorrowAssetModel bam = new BorrowAssetModel();
+		bam.setLoan_cmpn_cd(request.getParameter("loan_cmpn_cd"));
+		bam.setLoan_dept(request.getParameter("loan_cmpn_dept"));
+		bam.setLoad_Date(request.getParameter("loan_date"));
+		bam.setBorrow_cmpn_cd(request.getParameter("borrow_cmpn_cd"));
+		bam.setBorrow_dept(request.getParameter("borrow_cmpn_dept"));
+		bam.setPay_date(request.getParameter("borrow_date"));
+		bam.setBorrow_reason(request.getParameter("borrow_reason"));
+		bam.setAsset_rfid(request.getParameter("asset_rfid"));
+		bam.setAsset_model(request.getParameter("asset_model"));
+		bam.setAsset_name(request.getParameter("asset_name"));
+		bam.setAsset_series(request.getParameter("asset_series"));
+		
+		/*
+		 * XÉT 2 TRƯỜNG HỢP
+		 * I-MƯỢN TÀI SẢN CÙNG 1 CÔNG TY
+		 * II-MƯỢN TÀI SẢN KHÁC CÔNG TY
+		 */
+		
+			AssetGeneralFormSearch form = new AssetGeneralFormSearch();
+			form.setRFID(bam.getAsset_rfid());
+			form.setModel(bam.getAsset_model());
+			form.setDepartment(bam.getLoan_dept());
+			form.setSeries(bam.getAsset_series());
+			String oldNameCMPN_CD = SystemControl.CompanyCDCurrent;
+			SystemControl.CompanyCDCurrent = bam.getLoan_cmpn_cd();
+			AssetGeneralSelectDao assetGeneralSelectDao = new AssetGeneralSelectDao(form);
+			
+			try {
+				List<AssetObject> lst = assetGeneralSelectDao.excute();
+				SystemControl.CompanyCDCurrent = oldNameCMPN_CD;
+				if(lst.size()==0)
+				{
+					mv.addObject(Common.MESSAGE_ERROR, "Không tìm thấy thông tin tài sản");
+				}
+				else
+				{
+					if(lst.size() >1)
+					{
+						mv.addObject(Common.MESSAGE_ERROR, "Tìm thấy nhiều hơn 1 tài sản cùng loại");
+					}
+					else
+					{
+						if(lst.size() == 1)
+						{
+							if(bam.getAsset_rfid()!=null&&bam.getAsset_rfid().trim().length()==0)
+							{
+								bam.setAsset_rfid(lst.get(0).getRFID());
+							}
+							BorrowAssetInsertDao borrowAssetInsertDao = new BorrowAssetInsertDao(bam);
+							borrowAssetInsertDao.excute();
+							mv.addObject(Constants.MESSAGE_NOTIFICATION, "ĐĂNG KÝ THÀNH CÔNG");
+						}
+					}
+				}
+			} catch (SQLException e) {
+				SystemControl.CompanyCDCurrent = oldNameCMPN_CD;
+				mv.addObject(Common.MESSAGE_ERROR, "Lỗi trong lúc tìm dữ liệu tài sản");
+			}
+		
+		
 		mv.setViewName("pages/BorrowAssetRegister.jsp");
 		return mv;
 	}

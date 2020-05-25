@@ -162,7 +162,11 @@ public class CompanyManagementController {
 		//File file = null;
 		//file = UploadFileHelper.simpleUpload(excelFile, request, true, "images",request.getSession());
 		// Get form
+		PhotoController photo = new PhotoController();
+		String urlImage = photo.simpleUpload(modelMap, request, excelFile);
 		CompanyForm form = new CompanyForm(request);
+		form.setFile_name(urlImage);
+		System.out.println("URRL: " + urlImage);
 		//form.setFile_name(file.getName());
 		//Valitaion form
 		String validationName = "";

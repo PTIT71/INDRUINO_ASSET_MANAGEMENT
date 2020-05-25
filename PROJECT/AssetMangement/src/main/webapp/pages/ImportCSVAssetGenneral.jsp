@@ -43,6 +43,23 @@
 			
 		</div>
 	</s:form>
+	<c:if test="${lst != null}">
+		<table class="table table-bordered tablePopup"
+			style="width: 90%; margin: auto; margin-top: 12px;">
+			<thead>
+			<th colspan="1">Lỗi Dòng</th>
+			<th colspan="1">Nội dung</th>
+			</thead>
+			<tbody>
+			<c:forEach var="p" items="${lst}">
+				<tr>
+					<td style="color: red; font-weight: 700">${p.getLine()}</td>
+					<td style="color: red; font-weight: 700">${p.getContent()}</td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:if>
 </body>
 <script type="text/javascript">
 	// Add the following code if you want the name of the file appear on select

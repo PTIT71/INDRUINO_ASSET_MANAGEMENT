@@ -14,6 +14,13 @@ public class Common {
 	public static String MESSAGE_ERROR="message";
 	public static String LIST_COMPANY="lstcmpn";
 	
+	public static boolean isNotCheckEmpty(String str) {
+		if(str != null && str.trim().length()>0)
+		{
+			return true;
+		}
+		return false;
+	}
 	
 	public static String getDateCurrent(String format)
 	{

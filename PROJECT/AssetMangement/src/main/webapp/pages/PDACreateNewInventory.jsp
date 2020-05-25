@@ -116,7 +116,7 @@ input[type="text"]#rfid {
 				id="InventorySessionCD">
 		</div>
 		<div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
-			<button type="submit" class="btn btn-primary "
+			<button type="button" class="btn btn-primary " onclick="ToLink('inventory')"
 				style="float: right; width: 120px;">QUAY LẠI</button>
 			<button type="submit" class="btn btn-primary " name="save"
 				style="float: right; width: 120px;">LƯU LẠI</button>

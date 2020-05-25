@@ -14,25 +14,21 @@
 	<jsp:include page="/common/subHeaderEmpty.jsp"></jsp:include>
 	<div style="margin-top: 10px; padding: 0px; width: 100%; margin: auto">
 	<div style="margin: 10px">
+	<form action="UserManagement" method="POST">
 		<div class="title-feature">
 			<div class="title-feature-sub">
-				<button type="submit" onclick="ToLink('UserInsert')"
+				<button type="submit" name="create"
 					class="btn btn-primary">
 					<i style="font-size: 24px" class="fa">&#xf067;</i>THÊM MỚI
 				</button>
-				<button type="submit" class="btn btn-primary">
-					<i style='font-size: 24px' class='far'>&#xf044;</i> XEM THÔNG TIN
-				</button>
-				<button type="submit" class="btn btn-primary">
-					<i style='font-size: 24px' class='fas'>&#xf2ed;</i>XÓA
-				</button>
 			</div>
 			<div class="text-right">
-				<button type="submit" class="btn btn-primary text-right">
+				<button type="submit" class="btn btn-primary text-right" name="back">
 					<i class="fas fa-undo"></i> QUAY TRỞ LẠI
 				</button>
 			</div>
 		</div>
+		</form>
 	</div>
 		<div class="row">
 			<div class="col-sm-12 general-setting shadow-sm p-3 mb-5 bg-gray">

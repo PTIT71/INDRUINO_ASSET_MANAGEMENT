@@ -40,6 +40,7 @@ public class CompanyInsertDao {
 			sqlStatement.setString(13,"");//USER_UPDATE is EMPTY
 			sqlStatement.setString(14,"");//USER_UPDATE is EMPTY
 			sqlStatement.setString(15,form.getShortName());//SHORTNAME
+			sqlStatement.setString(16,"0");//SHORTNAME
 	System.out.println(sqlStatement.getParameterMetaData());
 			result = sqlStatement.executeUpdate();
 		
@@ -69,6 +70,7 @@ public class CompanyInsertDao {
 		sql.append(" 	,USER_UPDATE");
 		sql.append(" 	,LAST_UPDATE_DT");
 		sql.append(" 	,SHRT_NAME");
+		sql.append(" 	,DELETE_FG ");
 		sql.append(" )");
 		sql.append(" VALUES");
 		sql.append(" (");
@@ -86,6 +88,7 @@ public class CompanyInsertDao {
 		sql.append(" 	,?");//INSTER_DT
 		sql.append(" 	,?");//USER_UPDATE
 		sql.append(" 	,?");//LAST_UPDATE_DT
+		sql.append(" 	,?");//SHORT_NAME
 		sql.append(" 	,?");//SHORT_NAME
 		sql.append(" )");
 		

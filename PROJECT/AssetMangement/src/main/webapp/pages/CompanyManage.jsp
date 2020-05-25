@@ -20,15 +20,9 @@
 					class="btn btn-primary">
 					<i style="font-size: 24px" class="fa">&#xf067;</i>THÊM MỚI
 				</button>
-				<button type="submit" class="btn btn-primary">
-					<i style='font-size: 24px' class='far'>&#xf044;</i> XEM THÔNG TIN
-				</button>
-				<button type="submit" class="btn btn-primary">
-					<i style='font-size: 24px' class='fas'>&#xf2ed;</i>XÓA
-				</button>
 			</div>
 			<div class="text-right">
-				<button type="submit" class="btn btn-primary text-right">
+				<button type="button" onclick="ToLink('admin-manager')" class="btn btn-primary text-right">
 					<i class="fas fa-undo"></i> QUAY TRỞ LẠI
 				</button>
 			</div>
@@ -40,9 +34,9 @@
 				style="margin-top: 10px">
 				<thead>
 					<tr>
-						<th style="width: 2%"></th>
-						<th style="width: 20%">TÊN CÔNG TY</th>
-						<th style="width: 78%;">ĐỊA CHỈ</th>
+						<th style="width: 3%"></th>
+						<th style="width: 45%">TÊN CÔNG TY</th>
+						<th style="width: 50%;">ĐỊA CHỈ</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,7 +46,7 @@
 								onchange="GetSelected()" type="checkbox"
 								class="form-check-input"
 								style="margin: 0px; padding: 0px; margin-top: 7px" value=""></td>
-							<td style="text-align: center;"><a href="company/${company.getCompany_cd()}">${company.getCompany_name()}</a></td>
+							<td style="text-align: left;"><a href="company/${company.getCompany_cd()}">${company.getCompany_name()}</a></td>
 							<td>${company.getCompany_address()}</td>
 						</tr>
 					</c:forEach>

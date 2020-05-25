@@ -1,3 +1,6 @@
+*{
+	border-radius:0px !important;
+}
 .title-feature-sub
 {
 	float: left;
@@ -105,9 +108,9 @@ p.message_error
 	text-align: center;
 	font-weight: 700;
 }
-input[type="text"][readonly="readonly"]
+input[type="text"][readonly="readonly"],input[type="text"][readonly]
 {
-	background-color: #E0E0E0 !important;
+	background-color: #E0E0E0 ;
 	border: 2px inset;
 }
 .message
@@ -124,5 +127,18 @@ input[type="text"][readonly="readonly"]
 	line-height: 30px;
 	font-weight: 700;
 	padding-left: 10px;
+}
+::placeholder {
+  color: #69696969;
+}
+button.select
+{
+	height: 29px;
+    background-color: #dc3545;
+    border: 0px;
+    color: #FFFFFF;
+    width: 50px;
+    font-size: 22px;
+    line-height: 29px;
 }
 

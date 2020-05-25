@@ -17,6 +17,7 @@ import com.asset.management.model.CheckingAssetNew;
 import com.asset.management.util.Common;
 import com.asset.management.util.Constants;
 import com.asset.management.util.SessionCommon;
+import com.asset.management.util.SystemControl;
 
 @Controller
 @RequestMapping("/PDACreateNewInventory")
@@ -52,6 +53,8 @@ public class PDACreateNewInventoryController {
 		assetNew.setDateCreate(Common.getDateCurrent("dd/MM/YYYY"));
 		assetNew.setUser((String)request.getSession().getAttribute(Constants.SESSION_USER_ID));
 		assetNew.setStatus("2");
+		SystemControl sys = new SystemControl(request);
+		assetNew.setCmpn_cd(sys.CompanyCDCurrent);
 		CheckingAssetNewInsertDao checkingAssetNewInsertDao = new CheckingAssetNewInsertDao(assetNew);
 		try {
 			checkingAssetNewInsertDao.excute();
